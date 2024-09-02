@@ -76,6 +76,14 @@ app.get('/ransomware/interact', function(req, resp){
         resp.sendFile(path.join(__dirname, '/public/ransomware_interact.html'));
 });
 
+app.get('/safety/content', function(req, resp){
+        resp.sendFile(path.join(__dirname, '/public/safety_content.html'));
+});
+
+app.get('/safety/interact', function(req, resp){
+        resp.sendFile(path.join(__dirname, '/public/safety_interact.html'));
+});
+
 app.get('/spyware/content', function(req, resp){
         resp.sendFile(path.join(__dirname, '/public/spyware_content.html'));
 });
