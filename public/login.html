@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+    <title> Internet Safety Learning Platform Login Page </title>
+    <h1> Internet Safety Learning Platform</h1>
+    <button type="resources" class="button" onclick="location.href='/resources'">Resources</button>
+    <button type="login" class="button" onclick="location.href='/login'">Login</button>
+    <button type="home" class="button" onclick="location.href='/home'">Home</button>
+    <body> 
+        <div class="content">
+        <h3>Sign In</h3>
+        <form action="/login" method="post">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" placeholder="Email" />
+            <br>
+            <label for="password">Password</label>
+            <input type="text" name= "password" id="passwword" placeholder="Password" />
+            <br>
+        </form>
+        <button type="signin" class="button" onclick="location.href='/gisse'">Sign In</button>
+        <br>
+        <button type="signup" class="button" onclick="location.href='/signup'">Sign Up</button>
+        <br>
+        <button type="forgotpass" class="button" onclick="location.href='/forgotpass'">Forgot Password</button>
+        </div>
+    </body>
+    <br>
+</html>
+<link rel="stylesheet" href="style.css">
