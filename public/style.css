@@ -80,6 +80,7 @@ rgba(34,181,255,255)*/
 body {
   color : var(--color-text);
   min-height: 100vh;
+  /*maybe get rid of min height*/
   text-align: left;
   font-family: 'Times New Roman', Times, serif;
   display: grid;
@@ -103,11 +104,12 @@ nav{
   flex-direction: row;
   align-items: center;
   gap: 30px;
+  z-index: 1;
 }
 
 aside{
   box-sizing: border-box;
-  height: calc(100vh - 30px);
+  height: calc(400vh - 30px);
   top: 30px;
   width:0px;
   align-self: start;
@@ -192,7 +194,7 @@ aside .sub-menu a{
 }
 
 main{
-  height: 100vh;
+  height: 400vh;
   grid-area: main;
   background-color: var(--color-content);
   padding-top: 2%;
