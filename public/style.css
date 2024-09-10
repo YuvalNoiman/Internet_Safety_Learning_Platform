@@ -8,6 +8,7 @@
   --sun-icon: #997F44;
   --moon-icon: #B1B0B5;
   --switch-circle-pos: 0.5rem;
+  --sidebar-bg: rgba(140,202,255,255);
 }
 
 :root[data-theme="dark"] {
@@ -20,6 +21,7 @@
   --sun-icon: #000000;
   --moon-icon: #ffd268;
   --switch-circle-pos: 2.66rem;
+  --sidebar-bg: rgba(0, 28, 52, 255);
 }
 
 :root {
@@ -67,10 +69,8 @@ h5 {
 }
 
 /*submit button
-rgba(34,181,255,255)
+rgba(34,181,255,255)*/
 
-menu
-rgba(140,202,255,255)*/
 .content {
   background-color: var(--color-content);
   padding-top: 2%;
@@ -92,9 +92,59 @@ rgba(140,202,255,255)*/
 
 body {
   color : var(--color-text);
+  min-height: 100vh;
   text-align: left;
   font-family: 'Times New Roman', Times, serif;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: 
+  "navbar navbar"
+  "sidebar main"
+  "sidebar footer";
 }
+
+nav{
+  top: 0;
+  position: sticky;
+  grid-area: navbar;
+  padding: 1em;
+  background-color: var(--sidebar-bg);
+}
+
+aside{
+  height: calc(100vh - 30px);
+  top: 30px;
+  position: sticky;
+  align-self: start;
+  grid-area: sidebar;
+}
+
+main{
+  grid-area: main;
+}
+
+footer{
+grid-area: footer;
+padding: 2em;
+position: sticky;
+bottom: 0;
+}
+
+@media(max-width: 800px){
+  body{
+    grid-template-columns: 1fr;
+  }
+  aside{
+    position: fixed;
+    width: 300px;
+    display: none;
+  }
+  .show{
+    display: block;
+  }
+}
+
 
 text {
   color : var(--color-text);
@@ -106,6 +156,13 @@ form{
   color : var(--color-text);
   height: display;
   width: display;
+}
+
+#side-button {
+  /*change color later*/
+ fill: var(--color-content);
+ width: fit-content;
+ height: fit-content;
 }
 
 #theme-switch {
