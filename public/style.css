@@ -84,7 +84,7 @@ body {
   font-family: 'Times New Roman', Times, serif;
   display: grid;
   /*grid-auto-columns: minmax(100px 1fr);*/
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr auto;
   grid-template-areas: 
   "navbar navbar"
@@ -106,20 +106,25 @@ nav{
 }
 
 aside{
+  box-sizing: border-box;
   height: calc(100vh - 30px);
   top: 30px;
+  width:0px;
   align-self: start;
   grid-area: sidebar;
-  display: none;
+  /*display: none;*/
   /*change color later*/
   background-color: var(--color-button);
   padding-top: 33px;
   padding-bottom: 25px;
+  transition: 300ms ease-in-out;
+  overflow: hidden;
+  text-wrap: nowrap;
 }
 
 aside.show{
-  display: block;
-  width: span 1;
+  /*display: block;*/
+  width: 300px;
 }
 
 aside ul,li{
