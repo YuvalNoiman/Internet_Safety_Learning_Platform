@@ -84,7 +84,7 @@ body {
   font-family: 'Times New Roman', Times, serif;
   display: grid;
   /*grid-auto-columns: minmax(100px 1fr);*/
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 200px 1fr;
   grid-template-rows: auto 1fr auto;
   grid-template-areas: 
   "navbar navbar"
@@ -122,8 +122,10 @@ aside.show{
   width: span 1;
 }
 
-aside ul{
+aside ul,li{
   list-style: none;
+  /*maybe change to 0px*/
+  padding-left: 10px;
 }
 
 aside > ul > li:first-child{
@@ -161,7 +163,7 @@ aside span{
   flex-grow: 1;
 }
 
-aside a:hover, .dropdown-button:hover{
+aside a:hover, aside .dropdown-button:hover{
   background-color: var(--color-hover);
 }
 
@@ -175,12 +177,13 @@ aside .sub-menu{
   }
 }
 
-.sub-menu.show{
+aside .sub-menu.show{
   grid-template-rows: 1fr;
 }
 
 aside .sub-menu a{
-  padding-left: left;
+  /*padding-left: left;*/
+  padding-left: 2em;
 }
 
 main{
@@ -260,4 +263,19 @@ form{
 
 #moon-icon{
   fill: var(--moon-icon);
+}
+
+#dropdown-arrow{
+  /*width: fit-content;
+  height: fit-content;
+  flex-shrink: 0; */
+  fill: var(--color-text)
+}
+
+.dropdown-button svg{
+  transition: 200ms ease;
+}
+
+.rotate svg:last-child{
+  rotate: -180deg;
 }

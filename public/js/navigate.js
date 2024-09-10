@@ -7,4 +7,5 @@ document.querySelector('#side-button').addEventListener('click', toggleSidebar)
 
 function toggleSubMenu(button){
   button.nextElementSibling.classList.toggle('show')
+  button.classList.toggle('rotate')
 }
