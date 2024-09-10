@@ -28,6 +28,14 @@ app.get('/gisse', function(req, resp){
         resp.sendFile(path.join(__dirname, '/public/gisse_overview.html'));
 });
 
+app.get('/malware', function(req, resp){
+        resp.sendFile(path.join(__dirname, '/public/malware_overview.html'));
+});
+
+app.get('/certificate', function(req, resp){
+        resp.sendFile(path.join(__dirname, '/public/certificate.html'));
+});
+
 app.get('/ads/content', function(req, resp){
         resp.sendFile(path.join(__dirname, '/public/ads_content.html'));
 });

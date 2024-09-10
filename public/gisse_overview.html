@@ -5,6 +5,8 @@
     <head>
     <title> Internet Safety Learning Platform Home Page </title>
     <script src="../js/local_storage.js"></script>
+    <script src="../js/theme.js" defer></script>
+    <script src="../js/navigate.js" defer></script>
     <link rel="stylesheet" href="style.css">
     </head>
     <body> 
@@ -17,7 +19,36 @@
             </div>
             <button type="logout" class="button" onclick="location.href='/home'">Logout</button>
         </nav>
-        <aside id="sidebar">Sidebar</aside>
+        <aside id="sidebar">
+            <li class="active">
+                <li>
+                    <button onclick=toggleSubMenu(this) class="dropdown-button">
+                        <span>General Overview</span>
+                    </button>
+                    <ul class="sub-menu">
+                        <div>
+                            <li>
+                                <button onclick=toggleSubMenu(this) class="dropdown-button">
+                                    <span>Good Safety Practices</span>
+                                </button>
+                                <ul class="sub-menu">
+                                    <li><a href="/safety/content">Good Safety Practices Feature</a></li>
+                                    <li><a href="/safety/interact">Good Safety Practices R/Q</a></li>
+                                </ul>
+                            </li>
+                        </div>
+                    </ul>
+                </li>
+            </li>
+            <li>
+                <a href="/malware"></a>
+                    <span>Malware Overview</span>
+            </li>
+            <li>
+                <a href="/certificate"></a>
+                    <span>Certificate</span>
+            </li>
+        </aside>
         <main>
             <h3>Table of Contents</h3>
             <h4>Section 1: Good Safety Practices</h4>
@@ -54,6 +85,4 @@
         </main>
     </body>
 <br>
-<script src="../js/theme.js"></script>
-<script src="../js/navigate.js"></script>
 </html>

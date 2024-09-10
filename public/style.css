@@ -9,6 +9,8 @@
   --moon-icon: #B1B0B5;
   --switch-circle-pos: 0.5rem;
   --sidebar-bg: rgba(140,202,255,255);
+  /*maybe change hover color*/
+  --color-hover: #222533;
 }
 
 :root[data-theme="dark"] {
@@ -114,9 +116,71 @@ aside{
   padding-top: 33px;
   padding-bottom: 25px;
 }
-.show{
+
+aside.show{
   display: block;
   width: span 1;
+}
+
+aside ul{
+  list-style: none;
+}
+
+aside > ul > li:first-child{
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+aside ul li.active a{
+  /*change to var later */
+  color: green;
+}
+
+aside a, aside .dropdown-button{
+  border-radius: .5em;
+  padding: .85em;
+  text-decoration: none;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  /*box-sizing: border-box;*/
+}
+
+.dropdown-button{
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+aside span{
+  flex-grow: 1;
+}
+
+aside a:hover, .dropdown-button:hover{
+  background-color: var(--color-hover);
+}
+
+aside .sub-menu{
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: 300ms ease-in-out;
+
+  > div{
+    overflow: hidden;
+  }
+}
+
+.sub-menu.show{
+  grid-template-rows: 1fr;
+}
+
+aside .sub-menu a{
+  padding-left: left;
 }
 
 main{
