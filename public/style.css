@@ -71,22 +71,7 @@ h5 {
 /*submit button
 rgba(34,181,255,255)*/
 
-.content {
-  background-color: var(--color-content);
-  padding-top: 2%;
-  padding-bottom: 2%;
-  padding-left: 1%;
-  padding-right: 1%;
-}
-
-.top {
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 30px;
-}
-
-.arrow {
+#right{
   float: right;
 }
 
@@ -110,6 +95,10 @@ nav{
   grid-area: navbar;
   padding: 1em;
   background-color: var(--sidebar-bg);
+  /*display: inline-flex;
+  flex-direction: row;*/
+  align-items: center;
+  gap: 30px;
 }
 
 aside{
@@ -118,10 +107,20 @@ aside{
   position: sticky;
   align-self: start;
   grid-area: sidebar;
+  display: none;
+}
+.show{
+  display: block;
+  width: 30px;
 }
 
 main{
   grid-area: main;
+  background-color: var(--color-content);
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-left: 1%;
+  padding-right: 1%;
 }
 
 footer{
@@ -130,7 +129,7 @@ padding: 2em;
 position: sticky;
 bottom: 0;
 }
-
+/*
 @media(max-width: 800px){
   body{
     grid-template-columns: 1fr;
@@ -143,7 +142,7 @@ bottom: 0;
   .show{
     display: block;
   }
-}
+}*/
 
 
 text {
@@ -163,6 +162,7 @@ form{
  fill: var(--color-content);
  width: fit-content;
  height: fit-content;
+ cursor: pointer;
 }
 
 #theme-switch {

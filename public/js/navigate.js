@@ -1,7 +1,6 @@
-const sidebar = document.getElementById("sidebar")
-
-function toggleSidebar(){
- sidebar.classList.toggle('show')
+const toggleSidebar = () => {
+  const sidebar = document.getElementById("sidebar")
+  sidebar.classList.toggle('show')
 }
 //Add event listener for side bar
-document.querySelector('#theme-switch').addEventListener('click', toggleSidebar)
+document.querySelector('#side-button').addEventListener('click', toggleSidebar)
