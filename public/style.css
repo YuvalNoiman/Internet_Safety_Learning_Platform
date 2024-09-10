@@ -97,8 +97,8 @@ nav{
   grid-area: navbar;
   padding: 1em;
   background-color: var(--sidebar-bg);
-  /*display: inline-flex;
-  flex-direction: row;*/
+  display: inline-flex;
+  flex-direction: row;
   align-items: center;
   gap: 30px;
 }
@@ -106,12 +106,13 @@ nav{
 aside{
   height: calc(100vh - 30px);
   top: 30px;
-  position: sticky;
   align-self: start;
   grid-area: sidebar;
   display: none;
   /*change color later*/
   background-color: var(--color-button);
+  padding-top: 33px;
+  padding-bottom: 25px;
 }
 .show{
   display: block;
@@ -119,6 +120,7 @@ aside{
 }
 
 main{
+  height: 100vh;
   grid-area: main;
   background-color: var(--color-content);
   padding-top: 2%;
