@@ -100,7 +100,7 @@ h5 {
   display:inline-block;
 }
 
-.button {
+button{
   color : var(--color-text);
   background-color: var(--color-button);
   border: none;
@@ -111,6 +111,7 @@ h5 {
   float: right;
   width: fit-content;
   height: fit-content;
+  font: inherit;
 }
 
 /*submit button
@@ -192,7 +193,7 @@ aside .active{
 aside a, aside .dropdown-button{
   border-radius: .5em;
   padding: .85em;
-  text-decoration: none;
+  /*text-decoration: none;*/
   color: var(--color-text);
   display: flex;
   align-items: center;
