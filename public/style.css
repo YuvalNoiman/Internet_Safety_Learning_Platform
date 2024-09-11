@@ -26,6 +26,49 @@
   --sidebar-bg: rgba(0, 28, 52, 255);
 }
 
+:root[font="serif"]{
+  font-family: 'Times New Roman';
+}
+
+:root[font="sans-serif"]{
+  font-family: 'Verdana';
+}
+
+:root[font="monospace"]{
+  /*--font: 'Courier New';*/
+  font-family: 'Courier New';
+}
+
+:root[font="cursive"]{
+  font-family: 'Brush Script MT';
+}
+
+:root[font="fantasy"]{
+  font-family: 'Papyrus';
+}
+
+:root[font="comic"]{
+  font-family: 'Comic Sans MS';
+}
+
+:root[font="wingdings"]{
+  font-family: "Wingdings";
+}
+
+:root[font-size="small"]{
+  /*--font-size: 50%;*/
+  font-size: 50%;
+}
+
+:root[font-size="medium"]{
+  font-size: 100%;
+}
+
+:root[font-size="large"]{
+  font-size: 150%;
+}
+
+
 :root {
   --default-transition: color.3s ease-in-out, background-color .3s ease-in-out, border-color .3s ease-in-out, fill .3s ease-in-out, transform .3s ease-in-out;
 }
@@ -40,20 +83,20 @@ html {
 h1 {
   color : var(--color-text);
   text-align: left;
-  font-family: 'Times New Roman', Times, serif;
+  /*font-family: 'Times New Roman', Times, serif;*/
   display:inline-block;
 }
 
 h3 {
   color : var(--color-text);
   text-align: left;
-  font-family: 'Times New Roman', Times, serif;
+  /*font-family: 'Times New Roman', Times, serif;*/
 }
 
 h5 { 
   color : var(--color-text);
   text-align: left;
-  font-family: 'Times New Roman', Times, serif;
+  /*font-family: 'Times New Roman', Times, serif;*/
   display:inline-block;
 }
 
@@ -82,7 +125,7 @@ body {
   min-height: 100vh;
   /*maybe get rid of min height*/
   text-align: left;
-  font-family: 'Times New Roman', Times, serif;
+  /*font-family: 'Times New Roman', Times, serif;*/
   display: grid;
   /*grid-auto-columns: minmax(100px 1fr);*/
   grid-template-columns: auto 1fr;
@@ -162,7 +205,7 @@ aside a, aside .dropdown-button{
   text-align: left;
   background: none;
   border: none;
-  font: inherit;
+  /*font: inherit;*/
   cursor: pointer;
 }
 
@@ -214,7 +257,7 @@ bottom: 0;
 text {
   color : var(--color-text);
   text-align: left;
-  font-family: 'Times New Roman', Times, serif;
+  /*font-family: 'Times New Roman', Times, serif;*/
 }
 
 form{
@@ -333,7 +376,7 @@ form{
   background-color: #3e8e41;
 }
 
-.big{
+.large{
   font-size: 52px;
 }
 

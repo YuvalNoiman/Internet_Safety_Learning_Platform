@@ -14,5 +14,17 @@ const switchTheme = () => {
   localStorage.setItem('theme', newTheme)
 }
 
+function changeFont(font){
+  const rootElem = document.documentElement
+  rootElem.setAttribute('font', font)
+  localStorage.setItem('font', font)
+}
+
+function changeFontSize(fontSize){
+  const rootElem = document.documentElement
+  rootElem.setAttribute('font-size', fontSize)
+  localStorage.setItem('fontSize', fontSize)
+}
+
 //Add event listener for theme switch
 document.querySelector('#theme-switch').addEventListener('click', switchTheme)
