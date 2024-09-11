@@ -141,9 +141,9 @@ aside > ul > li:first-child{
   margin-bottom: 16px;
 }
 
-aside ul li.active a{
+aside .active{
   /*change to var later */
-  color: green;
+  color: gold;
 }
 
 aside a, aside .dropdown-button{
