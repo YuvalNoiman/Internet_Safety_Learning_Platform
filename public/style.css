@@ -7,7 +7,7 @@
   --switch-circle-bg: #FFD371;
   --sun-icon: #997F44;
   --moon-icon: #B1B0B5;
-  --switch-circle-pos: 0.5rem;
+  --switch-circle-pos: 0.7rem;
   --sidebar-bg: rgba(140,202,255,255);
   /*maybe change hover color*/
   --color-hover: #222533;
@@ -22,7 +22,7 @@
   --switch-circle-bg: #11252e;
   --sun-icon: #000000;
   --moon-icon: #ffd268;
-  --switch-circle-pos: 2.66rem;
+  --switch-circle-pos: 3.3rem;
   --sidebar-bg: rgba(0, 28, 52, 255);
 }
 
@@ -271,6 +271,8 @@ form{
 #side-button {
   /*change color later*/
  fill: var(--color-content);
+ width: 8rem;
+ height: 8rem;
  /*width: fit-content;
  height: fit-content;*/
  cursor: pointer;
@@ -310,10 +312,14 @@ form{
 }
 
 #sun-icon {
+  width: 2.22rem;
+  height: 2.22rem;
   fill: var(--sun-icon);
 }
 
 #moon-icon{
+  width: 2.22rem;
+  height: 2.22rem;
   fill: var(--moon-icon);
 }
 
