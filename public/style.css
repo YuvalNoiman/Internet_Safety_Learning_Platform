@@ -104,13 +104,14 @@ button{
   color : var(--color-text);
   background-color: var(--color-button);
   border: none;
-  padding-top: 2%;
+  /*padding-top: 2%;
   padding-bottom: 2%;
   padding-left: 2%;
-  padding-right: 2%;
+  padding-right: 2%;*/
+  padding: .85rem;
   float: right;
-  width: fit-content;
-  height: fit-content;
+  /*width: fit-content;*/
+  /*height: fit-content;*/
   font: inherit;
 }
 
@@ -142,27 +143,27 @@ nav{
   top: 0;
   position: sticky;
   grid-area: navbar;
-  padding: 1em;
+  padding: 1rem;
   background-color: var(--sidebar-bg);
   display: inline-flex;
   flex-direction: row;
   align-items: center;
-  gap: 30px;
+  gap: 1.875rem;
   z-index: 1;
 }
 
 aside{
   box-sizing: border-box;
-  height: calc(400vh - 30px);
-  top: 30px;
-  width:0px;
+  height: calc(400vh - 1.875rem);
+  top: 1.875rem;
+  width:0rem;
   align-self: start;
   grid-area: sidebar;
   /*display: none;*/
   /*change color later*/
   background-color: var(--color-button);
-  padding-top: 33px;
-  padding-bottom: 25px;
+  padding-top: 2.063rem;
+  padding-bottom: 1.563rem;
   transition: 300ms ease-in-out;
   overflow: hidden;
   text-wrap: nowrap;
@@ -170,19 +171,19 @@ aside{
 
 aside.show{
   /*display: block;*/
-  width: 300px;
+  width: 18.75rem;
 }
 
 aside ul,li{
   list-style: none;
   /*maybe change to 0px*/
-  padding-left: 10px;
+  padding-left: 0.625rem;
 }
 
 aside > ul > li:first-child{
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
 }
 
 aside .active{
@@ -191,13 +192,13 @@ aside .active{
 }
 
 aside a, aside .dropdown-button{
-  border-radius: .5em;
-  padding: .85em;
+  border-radius: .5rem;
+  padding: .85rem;
   /*text-decoration: none;*/
   color: var(--color-text);
   display: flex;
   align-items: center;
-  gap: 1em;
+  gap: 1rem;
   /*box-sizing: border-box;*/
 }
 
@@ -234,7 +235,7 @@ aside .sub-menu.show{
 
 aside .sub-menu a{
   /*padding-left: left;*/
-  padding-left: 2em;
+  padding-left: 2rem;
 }
 
 main{
@@ -250,7 +251,7 @@ main{
 
 footer{
 grid-area: footer;
-padding: 2em;
+padding: 2rem;
 position: sticky;
 bottom: 0;
 }
@@ -270,14 +271,14 @@ form{
 #side-button {
   /*change color later*/
  fill: var(--color-content);
- width: fit-content;
- height: fit-content;
+ /*width: fit-content;
+ height: fit-content;*/
  cursor: pointer;
 }
 
 #theme-switch {
   background-color: var(--switch-bg);
-  border-radius: 50px;
+  border-radius: 3.125rem;
   display: flex;
   align-items: center;
   gap: 0.33rem;
@@ -285,8 +286,8 @@ form{
   padding: 0.66rem;
   position: relative;
   transform: var(--default-transition);
-  width: fit-content;
-  height: fit-content;
+  /*width: fit-content;
+  height: fit-content;*/
   /*display: inline-block;*/
 }
 
@@ -296,7 +297,7 @@ form{
   width: 2.22rem;
   height: 2.22rem;
   background-color: var(--switch-circle-bg);
-  border-radius: 50px;
+  border-radius: 3.125rem;
   z-index: 0;
   left: 0;
   transform: translateX(var(--switch-circle-pos));
@@ -334,8 +335,8 @@ form{
 .dropdown-menu-button {
   background-color: #4CAF50;
   color: white;
-  padding: 16px;
-  font-size: 16px;
+  padding: 1rem;
+  /*font-size: 16px;*/
   border: none;
   cursor: pointer;
 }
@@ -351,15 +352,15 @@ form{
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  min-width: 10rem;
+  box-shadow: 0rem 0.5rem 1rem 0rem rgba(0,0,0,0.2);
   z-index: 1;
 }
 
 /* Links inside the dropdown */
 .dropdown-content text {
   color: black;
-  padding: 12px 16px;
+  padding: 0.75rem 1rem;
   text-decoration: none;
   display: block;
 }
