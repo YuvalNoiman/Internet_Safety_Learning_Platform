@@ -58,14 +58,17 @@
 :root[font-size="small"]{
   /*--font-size: 50%;*/
   font-size: 50%;
+  --diff: 6.4rem;
 }
 
 :root[font-size="medium"]{
   font-size: 100%;
+  --diff: 2.8rem;
 }
 
 :root[font-size="large"]{
   font-size: 150%;
+  --diff: 1.6rem;
 }
 
 
@@ -82,20 +85,20 @@ html {
 
 h1 {
   color : var(--color-text);
-  text-align: left;
+  text-align: center;
   /*font-family: 'Times New Roman', Times, serif;*/
   display:inline-block;
 }
 
 h3 {
   color : var(--color-text);
-  text-align: left;
+  text-align: center;
   /*font-family: 'Times New Roman', Times, serif;*/
 }
 
 h5 { 
   color : var(--color-text);
-  text-align: left;
+  text-align: center;
   /*font-family: 'Times New Roman', Times, serif;*/
   display:inline-block;
 }
@@ -120,13 +123,15 @@ rgba(34,181,255,255)*/
 
 #right{
   float: right;
+  width: 10rem;
+  height: 10rem;
 }
 
 body {
   color : var(--color-text);
   min-height: 100vh;
   /*maybe get rid of min height*/
-  text-align: left;
+  text-align: center;
   /*font-family: 'Times New Roman', Times, serif;*/
   display: grid;
   /*grid-auto-columns: minmax(100px 1fr);*/
@@ -154,7 +159,7 @@ nav{
 
 aside{
   box-sizing: border-box;
-  height: calc(400vh - 1.875rem);
+  height: calc(400vh + var(--diff));
   top: 1.875rem;
   width:0rem;
   align-self: start;
@@ -258,7 +263,7 @@ bottom: 0;
 
 text {
   color : var(--color-text);
-  text-align: left;
+  text-align: center;
   /*font-family: 'Times New Roman', Times, serif;*/
 }
 
@@ -327,6 +332,8 @@ form{
   /*width: fit-content;
   height: fit-content;
   flex-shrink: 0; */
+  width: 2.22rem;
+  height: 2.22rem;
   fill: var(--color-text)
 }
 
