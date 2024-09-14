@@ -116,6 +116,10 @@ button{
   font: inherit;
 }
 
+.middlebutton{
+  float: none;
+}
+
 /*submit button
 rgba(34,181,255,255)*/
 

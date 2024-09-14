@@ -2,29 +2,37 @@
 
 
 <html lang="en" data-theme="light">
-    <title> Internet Safety Learning Platform Login Page </title>
-    <h1> Internet Safety Learning Platform</h1>
-    <button type="resources" class="button" onclick="location.href='/resources'">Resources</button>
-    <button type="login" class="button" onclick="location.href='/login'">Login</button>
-    <button type="home" class="button" onclick="location.href='/home'">Home</button>
     <body> 
-        <div class="content">
+        <nav>
+            <title> Internet Safety Learning Platform Login Page </title>
+            <h1> Internet Safety Learning Platform</h1>
+            <button type="home" onclick="location.href='/home'">Home</button>
+            <button type="resources" onclick="location.href='/resources'">Resources</button>
+            <button type="login" onclick="location.href='/login'">Login</button>
+        </nav>
+        <main>
         <h3>Sign In</h3>
         <form action="/login" method="post">
             <label for="email">Email</label>
             <input type="text" name="email" id="email" placeholder="Email" />
             <br>
+            <br>
             <label for="password">Password</label>
             <input type="text" name= "password" id="passwword" placeholder="Password" />
             <br>
         </form>
-        <button type="signin" class="button" onclick="location.href='/gisse'">Sign In</button>
         <br>
-        <button type="signup" class="button" onclick="location.href='/signup'">Sign Up</button>
+        <button type="signin" class=middlebutton onclick="location.href='/gisse'">Sign In</button>
         <br>
-        <button type="forgotpass" class="button" onclick="location.href='/forgotpass'">Forgot Password</button>
-        </div>
+        <br>
+        <button type="signup" class=middlebutton onclick="location.href='/login/signup'">Sign Up</button>
+        <br>
+        <br>
+        <button type="forgotpass" class=middlebutton onclick="location.href='/login/forgot'">Forgot Password</button>
+        </main>
+        <footer>
+            <text>01001101 01100001 01101011 01100101 00100000 01010011 01110101 01110010 01100101 00100000 01110100 01101111 00100000 01001000 01100001 01110110 01100101 00100000 01000110 01110101 01101110 00100001</text>
+        </footer>
     </body>
-    <br>
 </html>
 <link rel="stylesheet" href="style.css">
