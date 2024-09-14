@@ -139,7 +139,7 @@ body {
   grid-template-areas: 
   "navbar navbar"
   "sidebar main"
-  "sidebar footer";
+  "footer footer";
   grid-auto-flow: column;
   overscroll-behavior: none;
 }
@@ -174,7 +174,7 @@ aside{
 
 aside.show{
   /*display: block;*/
-  width: 18.75rem;
+  width: 20rem;
 }
 
 aside ul,li{
@@ -250,9 +250,10 @@ main{
 
 footer{
   grid-area: footer;
-  padding: 2rem;
-  position: sticky;
+  padding: 0.2rem;
+  /*position: sticky;*/
   bottom: 0;
+  background-color: var(--sidebar-bg);
 }
 
 text {
@@ -328,6 +329,8 @@ form{
   flex-shrink: 0; */
   width: 2.22rem;
   height: 2.22rem;
+  min-height: 2.22rem;
+  min-width: 2.22rem;
   fill: var(--color-text)
 }
 
