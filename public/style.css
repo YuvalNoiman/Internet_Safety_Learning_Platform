@@ -81,6 +81,7 @@ html {
   width: display;
   margin: auto;
   background-color: var(--color-background);
+  overscroll-behavior: none;
 }
 
 h1 {
@@ -129,6 +130,7 @@ rgba(34,181,255,255)*/
 
 body {
   color : var(--color-text);
+  margin: auto;
   min-height: 100vh;
   /*maybe get rid of min height*/
   text-align: center;
@@ -142,6 +144,7 @@ body {
   "sidebar main"
   "sidebar footer";
   grid-auto-flow: column;
+  overscroll-behavior: none;
 }
 
 nav{
@@ -155,6 +158,7 @@ nav{
   align-items: center;
   gap: 1.875rem;
   z-index: 1;
+  overflow: scroll;
 }
 
 aside{
@@ -276,8 +280,8 @@ form{
 #side-button {
   /*change color later*/
  fill: var(--color-content);
- width: 8rem;
- height: 8rem;
+ min-width: 8rem;
+ min-height: 8rem;
  /*width: fit-content;
  height: fit-content;*/
  cursor: pointer;
@@ -392,15 +396,15 @@ form{
 }
 
 .large{
-  font-size: 52px;
+  font-size: 3.25rem;
 }
 
 .medium{
-  font-size: 36px;
+  font-size: 2.25rem;
 }
 
 .small{
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .serif{
