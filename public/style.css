@@ -160,6 +160,7 @@ nav{
   gap: 1.875rem;
   z-index: 1;
   overflow: scroll;
+  justify-content: safe center;
 }
 
 aside{
