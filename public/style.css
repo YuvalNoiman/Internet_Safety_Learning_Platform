@@ -129,6 +129,12 @@ rgba(34,181,255,255)*/
   height: 10rem;
 }
 
+#left{
+  rotate: 180deg;
+  min-width: 8rem;
+  min-height: 8rem;
+}
+
 body {
   color : var(--color-text);
   margin: auto;
