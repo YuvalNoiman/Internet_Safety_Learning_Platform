@@ -58,17 +58,14 @@
 :root[font-size="small"]{
   /*--font-size: 50%;*/
   font-size: 50%;
-  --diff: 6.4rem;
 }
 
 :root[font-size="medium"]{
   font-size: 100%;
-  --diff: 2.8rem;
 }
 
 :root[font-size="large"]{
   font-size: 150%;
-  --diff: 1.6rem;
 }
 
 
@@ -162,17 +159,14 @@ nav{
 }
 
 aside{
-  box-sizing: border-box;
-  height: calc(400vh + var(--diff));
-  top: 1.875rem;
+  /*box-sizing: border-box;*/
+  height: 400vh;
   width:0rem;
   align-self: start;
   grid-area: sidebar;
   /*display: none;*/
   /*change color later*/
   background-color: var(--color-button);
-  padding-top: 2.063rem;
-  padding-bottom: 1.563rem;
   transition: 300ms ease-in-out;
   overflow: hidden;
   text-wrap: nowrap;
@@ -251,18 +245,14 @@ main{
   height: 400vh;
   grid-area: main;
   background-color: var(--color-content);
-  padding-top: 2%;
-  padding-bottom: 2%;
-  padding-left: 1%;
-  padding-right: 1%;
   grid-column: span 2;
 }
 
 footer{
-grid-area: footer;
-padding: 2rem;
-position: sticky;
-bottom: 0;
+  grid-area: footer;
+  padding: 2rem;
+  position: sticky;
+  bottom: 0;
 }
 
 text {
