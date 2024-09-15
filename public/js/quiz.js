@@ -11,6 +11,7 @@ const resultDiv3 = document.getElementById('result3');
 const resultDiv4 = document.getElementById('result4');
 const resultDiv5 = document.getElementById('result5');
 const resultDiv = document.getElementById('result');
+const correctAnswersSafety = ['a','b','c','d','a'];
 const correctAnswersPhishing = ['c','b','d','b','a'];
 
 function checkQuiz(type){
@@ -20,6 +21,43 @@ function checkQuiz(type){
     let q3 = document.getElementById('q3');
     let q4 = document.getElementById('q4');
     let q5 = document.getElementById('q5');
+    if (type === "safety"){
+        if (q1.value === correctAnswersSafety[0]){
+            resultDiv1.innerHTML = "Correct!";
+            score += 1;
+        }
+        else{
+            resultDiv1.innerHTML = "Wrong!";
+        }
+        if (q2.value === correctAnswersSafety[1]){
+            resultDiv2.innerHTML = "Correct!";
+            score += 1;
+        }
+        else{
+            resultDiv2.innerHTML = "Wrong!";
+        }
+        if (q3.value === correctAnswersSafety[2]){
+            resultDiv3.innerHTML = "Correct!";
+            score += 1;
+        }
+        else{
+            resultDiv3.innerHTML = "Wrong!";
+        }
+        if (q4.value === correctAnswersSafety[3]){
+            resultDiv4.innerHTML = "Correct!";
+            score += 1;
+        }
+        else{
+            resultDiv4.innerHTML = "Wrong!";
+        }
+        if (q5.value === correctAnswersSafety[4]){
+            resultDiv5.innerHTML = "Correct!";
+            score += 1;
+        }
+        else{
+            resultDiv5.innerHTML = "Wrong!";
+        }
+    }
     if (type === "phishing"){
         if (q1.value === correctAnswersPhishing[0]){
             resultDiv1.innerHTML = "Correct!";
