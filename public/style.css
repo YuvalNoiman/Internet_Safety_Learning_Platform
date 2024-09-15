@@ -451,4 +451,5 @@ select{
   height: 2rem;
   color: var(--color-text);
   background-color: var(--color-background);
+  font: inherit;
 }
