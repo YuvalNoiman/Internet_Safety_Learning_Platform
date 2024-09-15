@@ -453,3 +453,9 @@ select{
   background-color: var(--color-background);
   font: inherit;
 }
+
+option{
+  color: var(--color-text);
+  background-color: var(--color-background);
+  font: inherit;
+}
