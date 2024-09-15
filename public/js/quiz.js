@@ -61,4 +61,4 @@ function checkQuiz(type){
     resultDiv.innerHTML = `Your score is ${score}/5`;
   }
 
-quizForm.addEventListener('submit', checkQuiz(type.getAttribute("data-value")))
+quizForm.addEventListener('submit', e => checkQuiz(type.getAttribute("data-value"), e.preventDefault()))
