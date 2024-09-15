@@ -7,6 +7,7 @@
     <script src="../js/local_storage.js"></script>
     <script src="../js/theme.js" defer></script>
     <script src="../js/navigate.js" defer></script>
+    <script src="../js/quiz.js" defer></script>
     <link rel="stylesheet" href="/style.css">
     </head>
     <body> 
@@ -207,49 +208,54 @@
             <h3>Reading:</h3>
             <text>This feature will...</text>
             <h3>Quiz:</h3>
-            <form action="/login" method="post">
-                <label for="Q1">Question 1</label>
-                <select id="Q1" name="Q1">
-                    <option value="a">A</option>
-                    <option value="b">B</option>
-                    <option value="c">C</option>
-                    <option value="d">D</option>
+            <form id="quiz">
+                <div id="type" data-value="phishing"></div>
+                <label for="q1">Question 1: What is Phishing?</label>
+                <select id="q1" name="q1">
+                    <option name = "q1" value="a">A type of Malware</option>
+                    <option name = "q1" value="b">A kind of Virus</option>
+                    <option name = "q1"  value="c">A form of social engineering</option>
+                    <option name = "q1"  value="d">What you do at a lake with a rod!</option>
                 </select>
+                <div id="result1"></div>
                 <br>
-                <label for="Q2">Question 2</label>
-                <select id="Q2" name="Q2">
-                    <option value="a">A</option>
-                    <option value="b">B</option>
-                    <option value="c">C</option>
-                    <option value="d">D</option>
+                <label for="q2">What are two primary techniques of Phishing?</label>
+                <select id="q2" name="q2">
+                    <option name = "q2"  value="a">URL Manipulation and Web Site Forgery</option>
+                    <option name = "q2" value="b">B</option>
+                    <option name = "q2" value="c">C</option>
+                    <option name = "q2" value="d">D</option>
                 </select>
+                <div id="result2"></div>
                 <br>
-                <label for="Q3">Question 3</label>
-                <select id="Q3" name="Q3">
-                    <option value="a">A</option>
-                    <option value="b">B</option>
-                    <option value="c">C</option>
-                    <option value="d">D</option>
+                <label for="q3">Question 3: Which is not a form of social engineering?</label>
+                <select id="q3" name="q3">
+                    <option name = "q3" value="a">Advance-fee fraud</option>
+                    <option name = "q3" value="b">Pretexting</option>
+                    <option name = "q3" value="c">Spear Phishing/Whale Phishing</option>
+                    <option name = "q3" value="d">Information Extortion</option>
                 </select>
+                <div id="result3"></div>
                 <br>
-                <label for="Q4">Question 4</label>
-                <select id="Q4" name="Q4">
-                    <option value="a">A</option>
-                    <option value="b">B</option>
-                    <option value="c">C</option>
-                    <option value="d">D</option>
+                <label for="q4">Question 4: What is a popular tactic of Phishing?</label>
+                <select id="q4" name="q4">
+                    <option name = "q4" value="a">Password Sniffing</option>
+                    <option name = "q4 "value="b">Email Spoofing</option>
+                    <option name = "q4" value="c">IP Grabbing</option>
+                    <option name = "q4" value="d">Using a big net to catch a lot of fish at once</option>
                 </select>
+                <div id="result4"></div>
                 <br>
-                <label for="Q5">Question 5</label>
-                <select id="Q5" name="Q5">
-                    <option value="a">A</option>
-                    <option value="b">B</option>
-                    <option value="c">C</option>
-                    <option value="d">D</option>
+                <label for="q5">Question 5: True or False: Impersonation is a type of Phishing</label>
+                <select id="q5" name="q5">
+                    <option name = "q5" value="a">True</option>
+                    <option name = "q5" value="b">False</option>
                 </select>
+                <div id="result5"></div>
+                <br>
+                <button type="submit" class=middlebutton value="Submit">Submit</button>
             </form>
-            <br>
-            <button type="Submit" class=middlebutton onclick="location.href='/gisse'">Submit</button>
+            <div id="result"></div>
             <br>
             <svg height="50" width="50" onclick="location.href='/impersonation/interact'" version="1.1" viewBox="0.0 0.0 960.0 720.0" fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" id="right"><clipPath id="p.0"><path d="m0 0l960.0 0l0 720.0l-960.0 0l0 -720.0z" clip-rule="nonzero"/></clipPath><g clip-path="url(#p.0)"><path fill="#000000" fill-opacity="0.0" d="m0 0l960.0 0l0 720.0l-960.0 0z" fill-rule="evenodd"/><path fill="#000000" d="m262.16534 225.07857l264.72614 0l0 -48.595627l221.25812 118.92914l-221.25812 118.92914l0 -48.595642l-264.72614 0z" fill-rule="evenodd"/><path stroke="#000000" stroke-width="1.0" stroke-linejoin="round" stroke-linecap="butt" d="m262.16534 225.07857l264.72614 0l0 -48.595627l221.25812 118.92914l-221.25812 118.92914l0 -48.595642l-264.72614 0z" fill-rule="evenodd"/></g></svg>
         </main>
