@@ -190,11 +190,11 @@ app.get('/spyware/interact', function(req, resp){
         resp.sendFile(path.join(__dirname, '/public/spyware_interact.html'));
 });
 
-app.get('/trojan/content', function(req, resp){
+app.get('/trojans/content', function(req, resp){
         resp.sendFile(path.join(__dirname, '/public/trojan_content.html'));
 });
 
-app.get('/trojan/interact', function(req, resp){
+app.get('/trojans/interact', function(req, resp){
         resp.sendFile(path.join(__dirname, '/public/trojan_interact.html'));
 });
 
