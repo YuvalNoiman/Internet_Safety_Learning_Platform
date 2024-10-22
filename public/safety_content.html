@@ -3,7 +3,8 @@
 
 <html lang="en" data-theme="light">
     <head>
-    <title> Internet Safety Learning Platform Home Page </title>
+    <title> Internet Safety Learning Platform Safety Content </title>
+    <link rel="icon" type= "image/x-icon" href="/images/favicon.ico">
     <script src="../js/local_storage.js"></script>
     <script src="../js/theme.js" defer></script>
     <script src="../js/navigate.js" defer></script>
@@ -50,15 +51,15 @@
                     </button>
                     <ul class="sub-menu">
                         <div>
-                            <li><a href="/gisse" class="active">General Overview</a></li>
+                            <li><a href="/gisse">General Overview</a></li>
                             <li>
                                 <button onclick=toggleSubMenu(this) class="dropdown-button">
-                                    <span>Good Safety Practices</span>
+                                    <span class="active">Good Safety Practices</span>
                                     <svg version="1.1" width=200 height=50 id="dropdown-arrow" viewBox="0.0 0.0 960.0 720.0" fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><clipPath id="p.0"><path d="m0 0l960.0 0l0 720.0l-960.0 0l0 -720.0z" clip-rule="nonzero"/></clipPath><g clip-path="url(#p.0)"><path fill-opacity="0.0" d="m0 0l960.0 0l0 720.0l-960.0 0z" fill-rule="evenodd"/><path d="m-6.7086616 303.19153l405.55484 0l0 -283.44348l162.30762 0l0 283.44348l405.55487 0l-486.70868 397.06042z" fill-rule="evenodd"/></g></svg>
                                 </button>
                                 <ul class="sub-menu">
                                     <div>
-                                        <li><a href="/safety/content">Interactive Feature</a></li>
+                                        <li><a class="active" href="/safety/content">Interactive Feature</a></li>
                                         <li><a href="/safety/interact">Reading and Quizzes</a></li>
                                     </div>
                                 </ul>
@@ -206,47 +207,54 @@
         </aside>
         <main>
             <h3>Reading:</h3>
-            <text>This feature will...</text>
+            <text>Almost everyone has access to the internet and not everyone is looking out for your best interest. When using the internet there are many dangers to watch out for. Here are some safety tips for when browsing the web.
+                <br>
+                <br>
+                <li>If you are not comfortable with your teacher, family, or even just a stranger seeing you, do not post it.</li>
+                <li>On the internet not everyone is who they claim to be so it is advised to set your profiles to private and not share personal information online.</li>
+                <li>If you do not know the person in real life do not meet up with them in person.</li>
+                <li>Use an online name which does not reveal your gender, age, or other identifiable information.</li>
+                <li>Use strong passwords, do not give them out to anyone, and when possible enable multi-factor authentication.</li>
+                <li>Do not download or open attachments from people or websites you don't trust.</li>
+                <li>Regularly update your devices to ensure no computer bug can be exploited by an attacker for unauthorized access and do not use wifi from unsecured sources.</li>
+                <li>If you have something important on a device make sure to have it backed-up</li>
+                </text>
             <h3>Quiz:</h3>
             <form id="quiz">
                 <div id="type" data-value="safety"></div>
-                <label for="q1">Question 1: What is Phishing?</label>
+                <label for="q1">Question 1: Who should you not give your password to?</label>
                 <select id="q1" name="q1">
-                    <option name = "q1" value="a">A type of Malware</option>
-                    <option name = "q1" value="b">A kind of Virus</option>
-                    <option name = "q1"  value="c">A form of social engineering</option>
-                    <option name = "q1"  value="d">What you do at a lake with a rod!</option>
+                    <option name = "q1" value="a">John Doe</option>
+                    <option name = "q1" value="b">Family</option>
+                    <option name = "q1"  value="c">Friends</option>
+                    <option name = "q1"  value="d">All of the above!</option>
                 </select>
                 <div id="result1"></div>
                 <br>
-                <label for="q2">What are two primary techniques of Phishing?</label>
+                <label for="q2">Which is okay to give out?</label>
                 <select id="q2" name="q2">
-                    <option name = "q2"  value="a">URL Manipulation and Web Site Forgery</option>
-                    <option name = "q2" value="b">B</option>
-                    <option name = "q2" value="c">C</option>
-                    <option name = "q2" value="d">D</option>
+                    <option name = "q2"  value="a">Age</option>
+                    <option name = "q2" value="b">SSN</option>
+                    <option name = "q2" value="c">Gender</option>
+                    <option name = "q2" value="d">Gamer Tag</option>
                 </select>
                 <div id="result2"></div>
                 <br>
-                <label for="q3">Question 3: Which is not a form of social engineering?</label>
+                <label for="q3">Question 3: True or False: Everyone is who they claim to be.</label>
                 <select id="q3" name="q3">
-                    <option name = "q3" value="a">Advance-fee fraud</option>
-                    <option name = "q3" value="b">Pretexting</option>
-                    <option name = "q3" value="c">Spear Phishing/Whale Phishing</option>
-                    <option name = "q3" value="d">Information Extortion</option>
+                    <option name = "q3" value="a">True</option>
+                    <option name = "q3" value="b">False</option>
                 </select>
                 <div id="result3"></div>
                 <br>
-                <label for="q4">Question 4: What is a popular tactic of Phishing?</label>
+                <label for="q4">Question 4: True or False: Updating your device can help keep it safer.</label>
                 <select id="q4" name="q4">
-                    <option name = "q4" value="a">Password Sniffing</option>
-                    <option name = "q4 "value="b">Email Spoofing</option>
-                    <option name = "q4" value="c">IP Grabbing</option>
-                    <option name = "q4" value="d">Using a big net to catch a lot of fish at once</option>
+                    <option name = "q4" value="a">True</option>
+                    <option name = "q4 "value="b">False</option>
                 </select>
                 <div id="result4"></div>
                 <br>
-                <label for="q5">Question 5: True or False: Impersonation is a type of Phishing</label>
+                <label for="q5">Question 5: True or False: Wifi is always secure.</label>
                 <select id="q5" name="q5">
                     <option name = "q5" value="a">True</option>
                     <option name = "q5" value="b">False</option>
@@ -257,10 +265,19 @@
             </form>
             <div id="result"></div>
             <br>
+            <header>Reading Soucres</header>
+            <text>
+                <li><a href="https://archives.fbi.gov/archives/fun-games/kids/safety-tips-text-version">FBI TIPS FOR KIDS</a></li>
+                <li><a href="https://www.dhs.gov/blue-campaign/online-safety">DHS BLUE CAMPAIGN ONLINE SAFETY</a></li>
+                <li><a href="https://www.washington.edu/doit/online-safety-tips-protecting-your-personal-information"> WASHINGTON EDU SAFETY TIPS</a></li>
+                <li><a href="https://staysafeonline.org/resources/online-safety-basics/">STAY SAFE ONLINE BASICS</a></li>
+                <li><a href="https://dem.nv.gov/Resources/Cybersecurity_Awareness/">DEM NV GOV CYBER AWARENESS</a></li>
+                <li><a href="https://oag.ca.gov/privacy/facts/online-privacy/protect-your-computer">OAG GOV PROTECT YOUR COMPUTER</a></li>
+            </text>
             <svg height="50" width="50" onclick="location.href='/phishing/interact'" version="1.1" viewBox="0.0 0.0 960.0 720.0" fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" id="right"><clipPath id="p.0"><path d="m0 0l960.0 0l0 720.0l-960.0 0l0 -720.0z" clip-rule="nonzero"/></clipPath><g clip-path="url(#p.0)"><path fill="#000000" fill-opacity="0.0" d="m0 0l960.0 0l0 720.0l-960.0 0z" fill-rule="evenodd"/><path fill="#000000" d="m262.16534 225.07857l264.72614 0l0 -48.595627l221.25812 118.92914l-221.25812 118.92914l0 -48.595642l-264.72614 0z" fill-rule="evenodd"/><path stroke="#000000" stroke-width="1.0" stroke-linejoin="round" stroke-linecap="butt" d="m262.16534 225.07857l264.72614 0l0 -48.595627l221.25812 118.92914l-221.25812 118.92914l0 -48.595642l-264.72614 0z" fill-rule="evenodd"/></g></svg>
         </main>
         <footer>
-            <text>01001101 01100001 01101011 01100101 00100000 01010011 01110101 01110010 01100101 00100000 01110100 01101111 00100000 01001000 01100001 01110110 01100101 00100000 01000110 01110101 01101110 00100001</text>
+            <text>01001110 01100101 01110110 01100101 01110010 00100000 01100111 01101001 01110110 01100101 00100000 01110101 01110000</text>
         </footer>
     </body>
 <br>

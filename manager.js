@@ -124,6 +124,10 @@ app.get('/worm/interact', function(req, resp){
         resp.sendFile(path.join(__dirname, '/public/worm_interact.html'));
 });
 
+app.get('/impersonation/google', function(req, resp){
+        resp.sendFile(path.join(__dirname, '/public/impersonation_google.html'));
+});
+
 //app.get('/adware_sim', function(req, resp){
 //        resp.sendFile(path.join(__dirname, '/public/adware_sim.html'));
 //});

@@ -3,10 +3,12 @@
 
 <html lang="en" data-theme="light">
     <head>
-    <title> Internet Safety Learning Platform Home Page </title>
+    <title> Internet Safety Learning Platform Worm Content </title>
+    <link rel="icon" type= "image/x-icon" href="/images/favicon.ico">
     <script src="../js/local_storage.js"></script>
     <script src="../js/theme.js" defer></script>
     <script src="../js/navigate.js" defer></script>
+    <script src="../js/quiz.js" defer></script>
     <link rel="stylesheet" href="/style.css">
     </head>
     <body> 
@@ -44,12 +46,12 @@
             <li>
                 <li>
                     <button onclick=toggleSubMenu(this) class="dropdown-button">
-                        <span class="active">General Module</span>
+                        <span>General Module</span>
                         <svg version="1.1" width=200 height=50 id="dropdown-arrow" viewBox="0.0 0.0 960.0 720.0" fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><clipPath id="p.0"><path d="m0 0l960.0 0l0 720.0l-960.0 0l0 -720.0z" clip-rule="nonzero"/></clipPath><g clip-path="url(#p.0)"><path fill-opacity="0.0" d="m0 0l960.0 0l0 720.0l-960.0 0z" fill-rule="evenodd"/><path d="m-6.7086616 303.19153l405.55484 0l0 -283.44348l162.30762 0l0 283.44348l405.55487 0l-486.70868 397.06042z" fill-rule="evenodd"/></g></svg>
                     </button>
                     <ul class="sub-menu">
                         <div>
-                            <li><a href="/gisse" class="active">General Overview</a></li>
+                            <li><a href="/gisse">General Overview</a></li>
                             <li>
                                 <button onclick=toggleSubMenu(this) class="dropdown-button">
                                     <span>Good Safety Practices</span>
@@ -57,8 +59,8 @@
                                 </button>
                                 <ul class="sub-menu">
                                     <div>
-                                        <li><a href="/safety/content">Interactive Feature</a></li>
-                                        <li><a href="/safety/interact">Reading and Quizzes</a></li>
+                                        <li><a href="/safety/interact">Interactive Feature</a></li>
+                                        <li><a href="/safety/content">Reading and Quizzes</a></li>
                                     </div>
                                 </ul>
                             </li>
@@ -69,8 +71,8 @@
                                 </button>
                                 <ul class="sub-menu">
                                     <div>
-                                        <li><a href="/phishing/content">Interactive Feature</a></li>
-                                        <li><a href="/phishing/interact">Reading and Quizzes</a></li>
+                                        <li><a href="/phishing/interact">Interactive Feature</a></li>
+                                        <li><a href="/phishing/content">Reading and Quizzes</a></li>
                                     </div>
                                 </ul>
                             </li>
@@ -81,8 +83,8 @@
                                 </button>
                                 <ul class="sub-menu">
                                     <div>
-                                        <li><a href="/impersonation/content">Interactive Feature</a></li>
-                                        <li><a href="/impersonation/interact">Reading and Quizzes</a></li>
+                                        <li><a href="/impersonation/interact">Interactive Feature</a></li>
+                                        <li><a href="/impersonation/content">Reading and Quizzes</a></li>
                                     </div>
                                 </ul>
                             </li>
@@ -93,8 +95,8 @@
                                 </button>
                                 <ul class="sub-menu">
                                     <div>
-                                        <li><a href="/ads/content">Interactive Feature</a></li>
-                                        <li><a href="/ads/interact">Reading and Quizzes</a></li>
+                                        <li><a href="/ads/interact">Interactive Feature</a></li>
+                                        <li><a href="/ads/content">Reading and Quizzes</a></li>
                                     </div>
                                 </ul>
                             </li>
@@ -105,8 +107,8 @@
                                 </button>
                                 <ul class="sub-menu">
                                     <div>
-                                        <li><a href="/files/content">Interactive Feature</a></li>
-                                        <li><a href="/files/interact">Reading and Quizzes</a></li>
+                                        <li><a href="/files/interact">Interactive Feature</a></li>
+                                        <li><a href="/files/content">Reading and Quizzes</a></li>
                                     </div>
                                 </ul>
                             </li>
@@ -117,7 +119,7 @@
             <li>
                 <li>
                     <button onclick=toggleSubMenu(this) class="dropdown-button">
-                        <span>Malware Module</span>
+                        <span class="active">Malware Module</span>
                         <svg version="1.1" width=200 height=50 id="dropdown-arrow" viewBox="0.0 0.0 960.0 720.0" fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><clipPath id="p.0"><path d="m0 0l960.0 0l0 720.0l-960.0 0l0 -720.0z" clip-rule="nonzero"/></clipPath><g clip-path="url(#p.0)"><path fill-opacity="0.0" d="m0 0l960.0 0l0 720.0l-960.0 0z" fill-rule="evenodd"/><path d="m-6.7086616 303.19153l405.55484 0l0 -283.44348l162.30762 0l0 283.44348l405.55487 0l-486.70868 397.06042z" fill-rule="evenodd"/></g></svg>
                     </button>
                     <ul class="sub-menu">
@@ -130,20 +132,20 @@
                                 </button>
                                 <ul class="sub-menu">
                                     <div>
-                                        <li><a href="/virus/content">Interactive Feature</a></li>
-                                        <li><a href="/virus/interact">Reading and Quizzes</a></li>
+                                        <li><a href="/virus/interact">Interactive Feature</a></li>
+                                        <li><a href="/virus/content">Reading and Quizzes</a></li>
                                     </div>
                                 </ul>
                             </li>
                             <li>
                                 <button onclick=toggleSubMenu(this) class="dropdown-button">
-                                    <span>Worms</span>
+                                    <span class="active">Worms</span>
                                     <svg version="1.1" width=200 height=50 id="dropdown-arrow" viewBox="0.0 0.0 960.0 720.0" fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><clipPath id="p.0"><path d="m0 0l960.0 0l0 720.0l-960.0 0l0 -720.0z" clip-rule="nonzero"/></clipPath><g clip-path="url(#p.0)"><path fill-opacity="0.0" d="m0 0l960.0 0l0 720.0l-960.0 0z" fill-rule="evenodd"/><path d="m-6.7086616 303.19153l405.55484 0l0 -283.44348l162.30762 0l0 283.44348l405.55487 0l-486.70868 397.06042z" fill-rule="evenodd"/></g></svg>
                                 </button>
                                 <ul class="sub-menu">
                                     <div>
-                                        <li><a href="/worm/content">Interactive Feature</a></li>
-                                        <li><a href="/worm/interact">Reading and Quizzes</a></li>
+                                        <li><a href="/worm/interact">Interactive Feature</a></li>
+                                        <li><a class="active"  href="/worm/content">Reading and Quizzes</a></li>
                                     </div>
                                 </ul>
                             </li>
@@ -154,8 +156,8 @@
                                 </button>
                                 <ul class="sub-menu">
                                     <div>
-                                        <li><a href="/adware/content">Interactive Feature</a></li>
-                                        <li><a href="/adware/interact">Reading and Quizzes</a></li>
+                                        <li><a href="/adware/interact">Interactive Feature</a></li>
+                                        <li><a href="/adware/content">Reading and Quizzes</a></li>
                                     </div>
                                 </ul>
                             </li>
@@ -166,8 +168,8 @@
                                 </button>
                                 <ul class="sub-menu">
                                     <div>
-                                        <li><a href="/trojans/content">Interactive Feature</a></li>
-                                        <li><a href="/trojans/interact">Reading and Quizzes</a></li>
+                                        <li><a href="/trojans/interact">Interactive Feature</a></li>
+                                        <li><a href="/trojans/content">Reading and Quizzes</a></li>
                                     </div>
                                 </ul>
                             </li>
@@ -178,8 +180,8 @@
                                 </button>
                                 <ul class="sub-menu">
                                     <div>
-                                        <li><a href="/spyware/content">Interactive Feature</a></li>
-                                        <li><a href="/spyware/interact">Reading and Quizzes</a></li>
+                                        <li><a href="/spyware/interact">Interactive Feature</a></li>
+                                        <li><a href="/spyware/content">Reading and Quizzes</a></li>
                                     </div>
                                 </ul>
                             </li>
@@ -190,8 +192,8 @@
                                 </button>
                                 <ul class="sub-menu">
                                     <div>
-                                        <li><a href="/ransomware/content">Interactive Feature</a></li>
-                                        <li><a href="/ransomware/interact">Reading and Quizzes</a></li>
+                                        <li><a href="/ransomware/interact">Interactive Feature</a></li>
+                                        <li><a href="/ransomware/content">Reading and Quizzes</a></li>
                                     </div>
                                 </ul>
                             </li>
@@ -205,56 +207,70 @@
         </aside>
         <main>
             <h3>Reading:</h3>
-            <text>This feature will...</text>
+            <text>A computer worm is a type of malware which is usually more dangerous than a virus. Worms can self-replicate automatically and transfer themselves to other machines. There are three steps to worms. The first step is where it is installed onto the vulnerable device. Next it starts to self-replicate and make its way to other devices through the network. The last step is where the attacker tries to actually gain control or do all the damage to the system.
+                <br><br>
+                In order to respond to a worm attack you want to follow four steps. You first want to contain it. Then you want to scan for vulnerabilities and patch them. Third, you want to quarantine the worm and then finally treat it. Worms can spread through many ways such as the internet, emails, through files, through text, through flash drives, etc. A computer worm like viruses can delete files, open backdoors, and steal data.
+                </text>
             <h3>Quiz:</h3>
-            <form action="/login" method="post">
-                <label for="Q1">Question 1</label>
-                <select id="Q1" name="Q1">
-                    <option value="a">A</option>
-                    <option value="b">B</option>
-                    <option value="c">C</option>
-                    <option value="d">D</option>
+            <form id="quiz">
+                <div id="type" data-value="worms"></div>
+                <label for="q1">Question 1: What is a worm?</label>
+                <select id="q1" name="q1">
+                    <option name = "q1" value="a">A kind of virus</option>
+                    <option name = "q1" value="b">A type of self-replicating malware</option>
+                    <option name = "q1"  value="c">Someone who likes to read books!</option>
+                    <option name = "q1"  value="d">An insect which wriggles in the dirt!</option>
                 </select>
+                <div id="result1"></div>
                 <br>
-                <label for="Q2">Question 2</label>
-                <select id="Q2" name="Q2">
-                    <option value="a">A</option>
-                    <option value="b">B</option>
-                    <option value="c">C</option>
-                    <option value="d">D</option>
+                <label for="q2">Question 2: True or False: A trojan is not as dangerous as a virus.</label>
+                <select id="q2" name="q2">
+                    <option name = "q2"  value="a">True</option>
+                    <option name = "q2" value="b">False</option>
                 </select>
+                <div id="result2"></div>
                 <br>
-                <label for="Q3">Question 3</label>
-                <select id="Q3" name="Q3">
-                    <option value="a">A</option>
-                    <option value="b">B</option>
-                    <option value="c">C</option>
-                    <option value="d">D</option>
+                <label for="q3">Question 3: What kind of attacks can a worm do?</label>
+                <select id="q3" name="q3">
+                    <option name = "q3" value="a">Delete files</option>
+                    <option name = "q3" value="b">Steal data</option>
+                    <option name = "q3" value="c">Open backdoors</option>
+                    <option name = "q3" value="d">All of the above</option>
                 </select>
+                <div id="result3"></div>
                 <br>
-                <label for="Q4">Question 4</label>
-                <select id="Q4" name="Q4">
-                    <option value="a">A</option>
-                    <option value="b">B</option>
-                    <option value="c">C</option>
-                    <option value="d">D</option>
+                <label for="q4">Question 4: What is not a way a worm can spread?</label>
+                <select id="q4" name="q4">
+                    <option name = "q4" value="a">Email</option>
+                    <option name = "q4 "value="b">Flash Drive</option>
+                    <option name = "q4" value="c">An infected computer touching a noninfected one</option>
+                    <option name = "q4 "value="d">Text Message</option>
                 </select>
+                <div id="result4"></div>
                 <br>
-                <label for="Q5">Question 5</label>
-                <select id="Q5" name="Q5">
-                    <option value="a">A</option>
-                    <option value="b">B</option>
-                    <option value="c">C</option>
-                    <option value="d">D</option>
+                <label for="q5">Question 5: Why do you want to contain a worm?</label>
+                <select id="q5" name="q5">
+                    <option name = "q5" value="a">To prevent further damage</option>
+                    <option name = "q5" value="b">Just because</option>
+                    <option name = "q5" value="c">It makes it stop working</option>
+                    <option name = "q5" value="d">It will need to think</option>
                 </select>
+                <div id="result5"></div>
+                <br>
+                <button type="submit" class=middlebutton value="Submit">Submit</button>
             </form>
+            <div id="result"></div>
             <br>
-            <button type="Submit" class=middlebutton onclick="location.href='/gisse'">Submit</button>
-            <br>
+            <header>Reading Soucres</header>
+            <text>
+                <li><a href="https://www.cisco.com/c/en/us/products/security/what-is-a-worm.html#:~:text=A%20worm%20is%20a%20type,files%20or%20introduce%20other%20malware">CISCO WHAT IS A WORM</a></li>
+                <li><a href="https://www.malwarebytes.com/computer-worm">MALWAREBYTES INFO ON COMPUTER WORMS</a></li>
+                <li><a href="https://www.security.org/antivirus/computer-worm/"> SECURITY ORG INFO on COMPUTER WORMS</a></li>
+            </text>
             <svg height="50" width="50" onclick="location.href='/adware/interact'" version="1.1" viewBox="0.0 0.0 960.0 720.0" fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" id="right"><clipPath id="p.0"><path d="m0 0l960.0 0l0 720.0l-960.0 0l0 -720.0z" clip-rule="nonzero"/></clipPath><g clip-path="url(#p.0)"><path fill="#000000" fill-opacity="0.0" d="m0 0l960.0 0l0 720.0l-960.0 0z" fill-rule="evenodd"/><path fill="#000000" d="m262.16534 225.07857l264.72614 0l0 -48.595627l221.25812 118.92914l-221.25812 118.92914l0 -48.595642l-264.72614 0z" fill-rule="evenodd"/><path stroke="#000000" stroke-width="1.0" stroke-linejoin="round" stroke-linecap="butt" d="m262.16534 225.07857l264.72614 0l0 -48.595627l221.25812 118.92914l-221.25812 118.92914l0 -48.595642l-264.72614 0z" fill-rule="evenodd"/></g></svg>
         </main>
         <footer>
-            <text>01001101 01100001 01101011 01100101 00100000 01010011 01110101 01110010 01100101 00100000 01110100 01101111 00100000 01001000 01100001 01110110 01100101 00100000 01000110 01110101 01101110 00100001</text>
+            <text>01001001 01110100 11100010 10000000 10011001 01110011 00100000 01100111 01101111 01101001 01101110 01100111 00100000 01110100 01101111 00100000 01100010 01100101 00100000 01101111 01101011 01100001 01111001 00101110</text>
         </footer>
     </body>
 <br>
