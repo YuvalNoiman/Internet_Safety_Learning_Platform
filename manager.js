@@ -1,8 +1,54 @@
 const express = require("express");
 const path = require('path')
+const mysql = require("mysql2")
+const bodyParser = require('body-parser');
+/*const mysql = require("mysql")
+const session = require("express-session")
+
+const MySQLStore = require("express-mysql-session")(session);
+
+
+var options ={
+        host:'local',
+        port: 3306,
+        user: 'root',
+        password: 12345,
+        database: 'dbsession'
+}
+
+var sessionConnection = mysql.createConnection(options);
+var sessionStore = new MySQLStore({
+        expiration: 1000000,
+        createDatabaseTable: true,
+        schema:{
+                tableName: 'sessiontbl',
+                columnNames: {
+                        session_id: 'session_id',
+                        expires: 'expires',
+                        data: 'data'
+                }
+        }
+},sessionStore)
+
+app.use( session ({
+        key: 'keyin',
+        secret: 'my secret',
+        store: sessionStore,
+        resave: false,
+        saveUninitialized: true
+}))*/
+
+const connection = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "Pass1234",
+        database: "learning_platform_database"
+})
 
 const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/home', function(req, resp){
         resp.sendFile(path.join(__dirname, '/public/home.html'));
@@ -19,6 +65,50 @@ app.get('/resources', function(req, resp){
 app.get('/login/signup', function(req, resp){
         resp.sendFile(path.join(__dirname, '/public/signup.html'));
 });
+
+app.post('/signup', (req, resp) => {
+        const {email, password, conpassword, age} = req.body;
+        console.log(email, password, conpassword, age);
+        connection.connect(function(err){
+                if (err) throw err;
+                console.log("Connected!");
+                connection.query('INSERT INTO users (email, password, age) VALUES (?, ?, ?)', [email, password, age], (error, result)=>{
+                        if (err) throw err;
+                        console.log("user saved")
+                });
+        });
+        resp.sendFile(path.join(__dirname, '/public/login.html'));
+})
+
+app.post('/forgot', (req, resp) => {
+        const {email} = req.body;
+        console.log(email);
+        resp.sendFile(path.join(__dirname, '/public/login.html'));
+})
+
+app.post('/loggingin', (req, resp) => {
+        const {email, password} = req.body;
+        console.log(email, password);
+        connection.connect(function(err){
+                if (err) throw err;
+                console.log("Connected!");
+                connection.query('SELECT email, password FROM users where email = ? AND password = ?', [email, password], (error, result)=>{
+                        if (err) throw err;
+                        console.log(result)
+                        try{
+                                console.log(result[0].email);
+                                console.log(result[0].password);
+                        if ((result[0].email != undefined) && (result[0].password != undefined)){
+                                console.log("user logged in")
+                                resp.sendFile(path.join(__dirname, '/public/gisse_overview.html'));
+                        }
+                        }catch {
+                                console.log("not logging in")
+                                resp.sendFile(path.join(__dirname, '/public/login.html'));
+                        }
+                });
+        });
+})
 
 app.get('/login/forgot', function(req, resp){
         resp.sendFile(path.join(__dirname, '/public/forgotpass.html'));
