@@ -51,6 +51,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/home', function(req, resp){
+        resp.status(200);
         resp.sendFile(path.join(__dirname, '/public/home.html'));
 });
 
@@ -72,12 +73,17 @@ app.post('/signup', (req, resp) => {
         connection.connect(function(err){
                 if (err) throw err;
                 console.log("Connected!");
-                connection.query('INSERT INTO users (email, password, age) VALUES (?, ?, ?)', [email, password, age], (error, result)=>{
-                        if (err) throw err;
-                        console.log("user saved")
-                });
+                if (email.includes("@") && (password.length > 8) && (password==conpassword)){
+                        connection.query('INSERT INTO users (email, password, age) VALUES (?, ?, ?)', [email, password, age], (error, result)=>{
+                                if (err) throw err;
+                                console.log("user saved")
+                                resp.sendFile(path.join(__dirname, '/public/login.html'));
+                        });  
+                }
+                else{
+                        resp.sendFile(path.join(__dirname, '/public/signup.html'));
+                }
         });
-        resp.sendFile(path.join(__dirname, '/public/login.html'));
 })
 
 app.post('/forgot', (req, resp) => {
@@ -223,11 +229,13 @@ app.get('/impersonation/google', function(req, resp){
 //});
 
 
-app.use((req, res) => {
-        res.status(404);
-        res.send(`<h1>Error 404: Page does not exist</h1>`);
+app.use((req, resp) => {
+        resp.status(404);
+        resp.send(`<h1>Error 404: Page does not exist</h1>`);
 })
 
 app.listen(3000, () => {
         console.log("listening on port 3000")
 })
+
+module.exports = app
