@@ -133,12 +133,111 @@ app.post('/signup', (req, resp) => {
         connection.connect(function(err){
                 if (err) throw err;
                 console.log("Connected!");
-                connection.query('INSERT INTO users (email, password, age) VALUES (?, ?, ?)', [email, password, age], (error, result)=>{
-                        if (err) throw err;
-                        console.log("user saved")
-                });
+                //connection.query('SELECT email FROM users where email = ?', [email], (error, result)=>{
+                //        if (error) throw err;
+                //        console.log(result)
+                //});
+                if (email.includes("@") && (password.length >= 8) && (password==conpassword)){
+                        connection.query('SELECT email FROM users where email = ?', [email], (error, result)=>{
+                                if (error) throw err;
+                                console.log("Result", result)
+                                if (result.email != undefined){
+                                        console.log("Result 0:", result[0])
+                                        resp.redirect('/login/signup');    
+                                }
+                        });
+                        const otp = Math.floor(1000 + Math.random() * 9000);
+                        otp_hash = bcrypt.hashSync(String(otp), 0);
+                        password_hash = bcrypt.hashSync(String(password), 0);
+                        console.log(password_hash);
+                        console.log(otp_hash);
+                        connection.query('INSERT INTO Users (email, password, f_name, l_name, age, otp, verified) VALUES (?, ?, ?, ?, ?, ?, ?)', [email, password_hash, f_name, l_name, age, otp_hash, false], (error, result)=>{
+                        //connection.query('INSERT INTO users (email, password, age) VALUES (?, ?, ?)', [email, password, age], (error, result)=>{
+                                if (err)  console.log(err);
+                                console.log("user saved")
+                                //resp.sendFile(path.join(__dirname, '/public/login.html'));
+                        });  
+                        connection.query('INSERT INTO Progress (email, gsp1, gsp2, ph1, ph2, i1, i2, pa1, pa2, drf1, drf2, mm, v1, v2, w1, w2, aw1, aw2, t1, t2, s1, s2, r1, r2, c, sec) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [email, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false], (error, result)=>{
+                                if (err)  console.log(err);
+                                console.log("progress saved")
+                        });
+
+                        const transporter = nodemailer.createTransport({
+                                service: 'Yahoo',
+                                auth: {
+                                    user: 'internetsectest@yahoo.com',
+                                    pass: 'xqpxrqdanedjxxwo',
+                                    //pass: 'Security$1234Plus',
+                                },
+                        });
+            
+                        const mailOptions = {
+                                from: 'internetsectest@yahoo.com',
+                                to: email,
+                                subject: 'Verify Account otp',
+                                text: `Your OTP: ${otp}`,
+                        };
+            
+                        transporter.sendMail(mailOptions, (error, info) => {
+                                //console.log(transporter)
+                                //console.log(mailOptions)
+                                //console.log(info)
+                                if (error) console.log(error);
+                                else {
+                                    res.json({
+                                        data: "Your OTP send to the email"
+                                    })
+                                }
+                        });
+                        //resp.sendFile(path.join(__dirname, '/public/verify.html'));
+                        resp.redirect('/verify'); 
+                }
+                else{
+                        //resp.sendFile(path.join(__dirname, '/public/signup.html'));
+                        resp.redirect('/login/signup'); 
+                }
         });
-        resp.sendFile(path.join(__dirname, '/public/login.html'));
+})
+
+app.get('/verify', function(req, resp){
+        resp.sendFile(path.join(__dirname, '/public/verify.html'));
+});
+
+app.post('/do_verify', (req, resp) => {
+        const {email, otp} = req.body;
+        console.log(email, otp);
+        connection.connect(function(err){
+                if (err) throw err;
+                console.log("Connected!");
+                connection.query('SELECT email, otp FROM users where email = ?', [email], (error, result)=>{
+                        if (error) throw error;
+                        if (result[0] != undefined){
+                                console.log(result)
+                                if (bcrypt.compareSync(otp, result[0].otp) == true){
+                                        console.log("hash matches")
+                                        connection.query('UPDATE users set verified = true where email = ?', [email], (error, result)=>{
+                                                if (error) throw error;
+                                                console.log(result)
+                                                });
+                                        otp_hash = bcrypt.hashSync(String(Math.floor(1000 + Math.random() * 9000)), 0);
+                                        console.log(otp_hash);
+                                        connection.query('UPDATE users set otp = ? where email = ?', [otp_hash, email], (error, result)=>{
+                                                if (error) throw error;
+                                                        console.log(result)
+                                                });
+                                }
+                                console.log(result)
+                                console.log("login")
+                                resp.redirect('/login'); 
+                        }else{
+                                console.log("not good")
+                                resp.redirect('/verify'); 
+                                //console.log("not good 2")
+                        }
+                });
+                
+                //resp.sendFile(path.join(__dirname, '/public/login.html'));
+        });
 })
 
 app.post('/forgot', (req, resp) => {
