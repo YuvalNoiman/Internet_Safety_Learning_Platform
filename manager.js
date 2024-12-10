@@ -112,6 +112,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/home', function(req, resp){
+        //console.log(req.session);
+        //console.log(req.session.email);
+        req.session.destroy(err => {
+                if(err) console.log(err);
+        });
+        //sessionStore.close()
+        resp.clearCookie("session")
+        resp.status(200);
         resp.sendFile(path.join(__dirname, '/public/home.html'));
 });
 
@@ -127,9 +135,14 @@ app.get('/login/signup', function(req, resp){
         resp.sendFile(path.join(__dirname, '/public/signup.html'));
 });
 
+//async function hash(password) {
+//        hash = await bcrypt.hash(String(password), 0);
+//        return hash;
+//    }
+
 app.post('/signup', (req, resp) => {
-        const {email, password, conpassword, age} = req.body;
-        console.log(email, password, conpassword, age);
+        const {email, f_name, l_name, age, password, conpassword} = req.body;
+        console.log(email, f_name, l_name, age, password, conpassword);
         connection.connect(function(err){
                 if (err) throw err;
                 console.log("Connected!");
@@ -140,57 +153,60 @@ app.post('/signup', (req, resp) => {
                 if (email.includes("@") && (password.length >= 8) && (password==conpassword)){
                         connection.query('SELECT email FROM users where email = ?', [email], (error, result)=>{
                                 if (error) throw err;
-                                console.log("Result", result)
-                                if (result.email != undefined){
+                                //console.log("Result", result)
+                                //console.log(result[0].email)
+                                if (result[0] != undefined){
                                         console.log("Result 0:", result[0])
-                                        resp.redirect('/login/signup');    
+                                        resp.redirect('/login/signup');   
                                 }
-                        });
-                        const otp = Math.floor(1000 + Math.random() * 9000);
-                        otp_hash = bcrypt.hashSync(String(otp), 0);
-                        password_hash = bcrypt.hashSync(String(password), 0);
-                        console.log(password_hash);
-                        console.log(otp_hash);
-                        connection.query('INSERT INTO Users (email, password, f_name, l_name, age, otp, verified) VALUES (?, ?, ?, ?, ?, ?, ?)', [email, password_hash, f_name, l_name, age, otp_hash, false], (error, result)=>{
+                                else{
+                                        const otp = Math.floor(1000 + Math.random() * 9000);
+                                        otp_hash = bcrypt.hashSync(String(otp), 0);
+                                        password_hash = bcrypt.hashSync(String(password), 0);
+                                        console.log(password_hash);
+                                        console.log(otp_hash);
+                                        connection.query('INSERT INTO Users (email, password, f_name, l_name, age, otp, verified) VALUES (?, ?, ?, ?, ?, ?, ?)', [email, password_hash, f_name, l_name, age, otp_hash, false], (error, result)=>{
                         //connection.query('INSERT INTO users (email, password, age) VALUES (?, ?, ?)', [email, password, age], (error, result)=>{
-                                if (err)  console.log(err);
-                                console.log("user saved")
+                                                if (err)  console.log(err);
+                                                console.log("user saved")
                                 //resp.sendFile(path.join(__dirname, '/public/login.html'));
-                        });  
-                        connection.query('INSERT INTO Progress (email, gsp1, gsp2, ph1, ph2, i1, i2, pa1, pa2, drf1, drf2, mm, v1, v2, w1, w2, aw1, aw2, t1, t2, s1, s2, r1, r2, c, sec) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [email, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false], (error, result)=>{
-                                if (err)  console.log(err);
-                                console.log("progress saved")
-                        });
+                                        });  
+                                        connection.query('INSERT INTO Progress (email, gsp1, gsp2, ph1, ph2, i1, i2, pa1, pa2, drf1, drf2, mm, v1, v2, w1, w2, aw1, aw2, t1, t2, s1, s2, r1, r2, c, sec) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [email, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false], (error, result)=>{
+                                                if (err)  console.log(err);
+                                                console.log("progress saved")
+                                        });
 
-                        const transporter = nodemailer.createTransport({
-                                service: 'Yahoo',
-                                auth: {
-                                    user: 'internetsectest@yahoo.com',
-                                    pass: 'xqpxrqdanedjxxwo',
+                                        const transporter = nodemailer.createTransport({
+                                                service: 'Yahoo',
+                                                auth: {
+                                                user: 'internetsectest@yahoo.com',
+                                                pass: 'xqpxrqdanedjxxwo',
                                     //pass: 'Security$1234Plus',
-                                },
-                        });
+                                                },
+                                        });
             
-                        const mailOptions = {
-                                from: 'internetsectest@yahoo.com',
-                                to: email,
-                                subject: 'Verify Account otp',
-                                text: `Your OTP: ${otp}`,
-                        };
+                                        const mailOptions = {
+                                                from: 'internetsectest@yahoo.com',
+                                                to: email,
+                                                subject: 'Verify Account otp',
+                                                text: `Your OTP: ${otp}`,
+                                        };
             
-                        transporter.sendMail(mailOptions, (error, info) => {
+                                        transporter.sendMail(mailOptions, (error, info) => {
                                 //console.log(transporter)
                                 //console.log(mailOptions)
                                 //console.log(info)
-                                if (error) console.log(error);
-                                else {
-                                    res.json({
-                                        data: "Your OTP send to the email"
-                                    })
+                                                if (error) console.log(error);
+                                                else {
+                                                    res.json({
+                                                        data: "Your OTP send to the email"
+                                                    })
+                                                }
+                                        });
+                        //resp.sendFile(path.join(__dirname, '/public/verify.html'));
+                                        resp.redirect('/verify'); 
                                 }
                         });
-                        //resp.sendFile(path.join(__dirname, '/public/verify.html'));
-                        resp.redirect('/verify'); 
                 }
                 else{
                         //resp.sendFile(path.join(__dirname, '/public/signup.html'));
@@ -243,8 +259,91 @@ app.post('/do_verify', (req, resp) => {
 app.post('/forgot', (req, resp) => {
         const {email} = req.body;
         console.log(email);
-        resp.sendFile(path.join(__dirname, '/public/login.html'));
+        connection.connect(function(err){
+                if (err) throw err;
+                console.log("Connected!");
+                otp =  Math.floor(1000 + Math.random() * 9000);
+                otp_hash = bcrypt.hashSync(String(otp), 0);
+                console.log(otp_hash);
+                connection.query('UPDATE users set otp = ? where email = ?', [otp_hash, email], (error, result)=>{
+                        if (error) throw error;
+                        console.log(result)
+                });
+        });
+        const transporter = nodemailer.createTransport({
+                service: 'Yahoo',
+                auth: {
+                    user: 'internetsectest@yahoo.com',
+                    pass: 'xqpxrqdanedjxxwo',
+                    //pass: 'Security$1234Plus',
+                },
+        });
+
+        const mailOptions = {
+                from: 'internetsectest@yahoo.com',
+                to: email,
+                subject: 'Reset Password otp',
+                text: `Your OTP: ${otp}`,
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+                //console.log(transporter)
+                //console.log(mailOptions)
+                //console.log(info)
+                if (error) console.log(error);
+                else {
+                    res.json({
+                        data: "Your OTP send to the email"
+                    })
+                }
+        });
+        //resp.sendFile(path.join(__dirname, '/public/reset_pass.html'));
+        resp.redirect('/reset_pass'); 
 })
+
+app.get('/reset_pass', function(req, resp){
+        resp.sendFile(path.join(__dirname, '/public/reset_pass.html'));
+});
+
+app.post('/change_pass', (req, resp) => {
+        const {email, otp, pass} = req.body;
+        console.log(email, otp, pass);
+        connection.connect(function(err){
+                if (err) throw err;
+                console.log("Connected!");
+                connection.query('SELECT email, otp FROM users where email = ?', [email], (error, result)=>{
+                        if (error) throw error;
+                        console.log(result);
+                        if (result[0] != undefined){
+                        if (bcrypt.compareSync(otp, result[0].otp) == true){
+                                console.log("hash matches")
+                                connection.query('UPDATE users set verified = true where email = ?', [email], (error, result)=>{
+                                        if (error) throw error;
+                                        console.log(result)
+                                        });
+                                otp_hash = bcrypt.hashSync(String(Math.floor(1000 + Math.random() * 9000)), 0);
+                                console.log(otp_hash);
+                                connection.query('UPDATE users set otp = ? where email = ?', [otp_hash, email], (error, result)=>{
+                                        if (error) throw error;
+                                        console.log(result)
+                                        });
+                                connection.query('UPDATE users set password = ? where email = ?', [bcrypt.hashSync(String(pass), 0), email], (error, result)=>{
+                                        if (error) throw error;
+                                        console.log(result)
+                                        });
+                        }
+                        console.log(result)
+                        resp.redirect('/login'); 
+                        }
+                        else{
+                        console.log("not good")
+                        resp.redirect('/reset_pass'); 
+                        //console.log("not good 2")
+                        }
+                });
+                //resp.sendFile(path.join(__dirname, '/public/login.html'));
+        });
+});
 
 app.post('/loggingin', (req, resp) => {
         const {email, password} = req.body;
@@ -252,19 +351,110 @@ app.post('/loggingin', (req, resp) => {
         connection.connect(function(err){
                 if (err) throw err;
                 console.log("Connected!");
-                connection.query('SELECT email, password FROM users where email = ? AND password = ?', [email, password], (error, result)=>{
-                        if (err) throw err;
+                connection.query('SELECT gsp1, gsp2, ph1, ph2, i1, i2, pa1, pa2, drf1, drf2, mm, v1, v2, w1, w2, aw1, aw2, t1, t2, s1, s2, r1, r2, c, sec FROM progress where email = ?', [email], (error, result)=>{
+                        if (error) throw error;
+                        if (result[0]!= undefined){
+                        req.session.gsp1 = result[0].gsp1;
+                        req.session.gsp2 = result[0].gsp2;
+                        req.session.ph1 = result[0].ph1;
+                        req.session.ph2 = result[0].ph2;
+                        req.session.i1 = result[0].i1;
+                        req.session.i2 = result[0].i2;
+                        req.session.pa1 = result[0].pa1;
+                        req.session.pa2 = result[0].pa2;
+                        req.session.drf1 = result[0].drf1;
+                        req.session.drf2 = result[0].drf2;
+                        req.session.mm = result[0].mm;
+                        req.session.v1 = result[0].v1;
+                        req.session.v2 = result[0].v2;
+                        req.session.w1 = result[0].w1;
+                        req.session.w2 = result[0].w2;
+                        req.session.aw1 = result[0].aw1;
+                        req.session.aw2 = result[0].aw2;
+                        req.session.t1 = result[0].t1;
+                        req.session.t2 = result[0].t2;
+                        req.session.s1 = result[0].s1;
+                        req.session.s2 = result[0].s2;
+                        req.session.r1 = result[0].r1;
+                        req.session.r2 = result[0].r2;
+                        req.session.c = result[0].c;
+                        req.session.sec = result[0].sec;
+                        }
+                });
+                connection.query('SELECT f_name, l_name, age FROM users where email = ?', [email], (error, result)=>{
+                        if (error) throw error;
+                        if (result[0]!= undefined){
+                        req.session.age = result[0].age;
+                        req.session.f_name = result[0].f_name;
+                        req.session.l_name = result[0].l_name;
+                        console.log(req.session.f_name)
+                        console.log(req.session.l_name)
+                        console.log(req.session.age)
+                        }
+                });
+                //console.log("email2", req.session.email2);
+                connection.query('SELECT email, password, verified FROM users where email = ?', [email], (error, result)=>{
+                        if (error) throw error;
                         console.log(result)
                         try{
                                 console.log(result[0].email);
                                 console.log(result[0].password);
-                        if ((result[0].email != undefined) && (result[0].password != undefined)){
-                                console.log("user logged in")
-                                resp.sendFile(path.join(__dirname, '/public/gisse_overview.html'));
-                        }
+                                console.log(result[0].verified);
+                                //console.log(bcrypt.compareSync(password, result[0].password));
+                                if ((result[0]!= undefined) && (result[0].verified != false) && (bcrypt.compareSync(password, result[0].password) == true)){
+                                        console.log("user logged in");
+                                        req.session.email = email;
+                                        //progress
+                                        connection.query('SELECT gsp1, gsp2, ph1, ph2, i1, i2, pa1, pa2, drf1, drf2, mm, v1, v2, w1, w2, aw1, aw2, t1, t2, s1, s2, r1, r2, c, sec FROM progress where email = ?', [email], (error, result)=>{
+                                                if (error) throw error;
+                                                req.session.gsp1 = result[0].gsp1;
+                                                req.session.gsp2 = result[0].gsp2;
+                                                req.session.ph1 = result[0].ph1;
+                                                req.session.ph2 = result[0].ph2;
+                                                req.session.i1 = result[0].i1;
+                                                req.session.i2 = result[0].i2;
+                                                req.session.pa1 = result[0].pa1;
+                                                req.session.pa2 = result[0].pa2;
+                                                req.session.drf1 = result[0].drf1;
+                                                req.session.drf2 = result[0].drf2;
+                                                req.session.mm = result[0].mm;
+                                                req.session.v1 = result[0].v1;
+                                                req.session.v2 = result[0].v2;
+                                                req.session.w1 = result[0].w1;
+                                                req.session.w2 = result[0].w2;
+                                                req.session.aw1 = result[0].aw1;
+                                                req.session.aw2 = result[0].aw2;
+                                                req.session.t1 = result[0].t1;
+                                                req.session.t2 = result[0].t2;
+                                                req.session.s1 = result[0].s1;
+                                                req.session.s2 = result[0].s2;
+                                                req.session.r1 = result[0].r1;
+                                                req.session.r2 = result[0].r2;
+                                                req.session.c = result[0].c;
+                                                req.session.sec = result[0].sec;
+                                        });
+                                        connection.query('SELECT f_name, l_name, age FROM users where email = ?', [email], (error, result)=>{
+                                                if (error) throw error;
+                                                req.session.age = result[0].age;
+                                                req.session.f_name = result[0].f_name;
+                                                req.session.l_name = result[0].l_name;
+                                                console.log(req.session.f_name)
+                                                console.log(req.session.l_name)
+                                                console.log(req.session.age)
+                                        });
+                                        req.session.save();
+                                        //console.log("Request Email: ", req.session.email);
+                                        //console.log(req.session);
+                                        //resp.sendFile(path.join(__dirname, '/public/gisse_overview.html'));
+                                        resp.redirect('/gisse')
+                                        console.log("sent to overview");
+                                }else{
+                                        console.log("not logging in");
+                                        resp.redirect('/login'); 
+                                }         
                         }catch {
-                                console.log("not logging in")
-                                resp.sendFile(path.join(__dirname, '/public/login.html'));
+                                console.log("not logging in");
+                                resp.redirect('/login'); 
                         }
                 });
         });
@@ -783,10 +973,44 @@ app.use('/impersonation_sim', express.static(path.join(__dirname, 'public/games/
 //        resp.sendFile(path.join(__dirname, 'public/games/IMPERSONATION_WEBGL/index.html'));
 //});
 
+app.use('/ransomware_sim', express.static(path.join(__dirname, 'public/games/RANSOMWARE_WEBGL')));
+app.use('/stranger_danger_sim', express.static(path.join(__dirname, 'public/games/SD_WEBGL')));
+app.use('/spyware_sim', express.static(path.join(__dirname, 'public/games/SPYWARE_WEBGL')));
+app.use('/trojan_sim', express.static(path.join(__dirname, 'public/games/TROJAN_WEBGL')));
+app.use('/virus_sim', express.static(path.join(__dirname, 'public/games/VIRUS_WEBGL')));
+app.use('/worm_sim', express.static(path.join(__dirname, 'public/games/WORM_WEBGL')));
+app.use('/adware_sim', express.static(path.join(__dirname, 'public/games/ADWARE_WEBGL')));
+app.use('/ads_sim', express.static(path.join(__dirname, 'public/games/ADS_WEBGL')));
 
-app.use((req, res) => {
-        res.status(404);
-        res.send(`<h1>Error 404: Page does not exist</h1>`);
+/*
+app.get('/ransomware_sim', function(req, resp){
+        resp.sendFile(path.join(__dirname, 'public/games/RANSOMWARE_WEBGL/index.html'));
+});
+
+app.get('/stranger_danger_sim', function(req, resp){
+        resp.sendFile(path.join(__dirname, 'public/games/SD_WEBGL/index.html'));
+});
+
+app.get('/spyware_sim', function(req, resp){
+        resp.sendFile(path.join(__dirname, 'public/games/SPYWARE_WEBGL/index.html'));
+});
+
+app.get('/trojan_sim', function(req, resp){
+        resp.sendFile(path.join(__dirname, 'public/games/TROJAN_WEBGL/index.html'));
+});
+
+app.get('/virus_sim', function(req, resp){
+        resp.sendFile(path.join(__dirname, 'public/games/VIRUS_WEBGL/index.html'));
+});
+
+app.get('/worm_sim', function(req, resp){
+        resp.sendFile(path.join(__dirname, 'public/games/WORM_WEBGL/index.html'));
+});
+*/
+
+app.use((req, resp) => {
+        resp.status(404);
+        resp.send(`<h1>Error 404: Page does not exist</h1>`);
 })
 
 app.listen(3000, () => {
