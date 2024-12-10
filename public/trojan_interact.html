@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 
+<!--Convert The Binary! You should be good at this! "01010100 01101000 01100101 00100000 01101100 01100101 01110100 01110100 01100101 01110010 00100000 01101100 01101111 01110111 01100101 01110010 01100011 01100001 01110011 01100101 00100000 01100101 00100000 01101001 01110011 00100000 01100110 01101111 01110010 00100000 01101101 01100101 00100000 01101110 01101111 01110111 00100000 01100111 01101111 00100000 01110100 01101111 00100000 01110100 01101000 01100101 00100000 01110111 01101000 01100101 01110010 01100101 00100000 01110100 01101000 01100101 00100000 01100010 01110010 01100001 01101001 01101110 00100000 01110111 01100001 01110011 00100000 01100010 01100101 01100011 01100001 01110101 01110011 01100101 00100000 01111001 01101111 01110101 00100000 01101000 01100001 01110110 01100101 00100000 01100001 00100000 01100010 01101001 01100111 00100000 01101111 01101110 01100101 00101110"-->
 
 <html lang="en" data-theme="light">
     <head>
@@ -8,6 +9,7 @@
     <script src="../js/local_storage.js"></script>
     <script src="../js/theme.js" defer></script>
     <script src="../js/navigate.js" defer></script>
+    <script src="../js/full_screen.js" defer></script>
     <link rel="stylesheet" href="/style.css">
     </head>
     <body> 
@@ -206,7 +208,12 @@
         </aside>
         <main>
             <h3>Interactive Feature:</h3>
-            <text>This feature will...</text>
+            <h4>The Zeus Trojan was a very dangerous malware!</h4>
+            <br>
+            <div class="iframe js-iframe">
+                <iframe allowfullscreen src="/trojan_sim" title="Trojan Simulation"></iframe>
+                <button class="iframe-toggle js-iframe-toggle">Toggle full screen</button>
+            </div>
             <svg height="50" width="50" onclick="location.href='/trojans/content'" version="1.1" viewBox="0.0 0.0 960.0 720.0" fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" id="right"><clipPath id="p.0"><path d="m0 0l960.0 0l0 720.0l-960.0 0l0 -720.0z" clip-rule="nonzero"/></clipPath><g clip-path="url(#p.0)"><path fill="#000000" fill-opacity="0.0" d="m0 0l960.0 0l0 720.0l-960.0 0z" fill-rule="evenodd"/><path fill="#000000" d="m262.16534 225.07857l264.72614 0l0 -48.595627l221.25812 118.92914l-221.25812 118.92914l0 -48.595642l-264.72614 0z" fill-rule="evenodd"/><path stroke="#000000" stroke-width="1.0" stroke-linejoin="round" stroke-linecap="butt" d="m262.16534 225.07857l264.72614 0l0 -48.595627l221.25812 118.92914l-221.25812 118.92914l0 -48.595642l-264.72614 0z" fill-rule="evenodd"/></g></svg>
         </main>
         <footer>

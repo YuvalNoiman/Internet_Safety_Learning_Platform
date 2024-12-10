@@ -460,7 +460,38 @@ option{
   font: inherit;
 }
 
+/*
 iframe{
   width: 30rem;
   height: 30rem;
+}*/
+
+.iframe {
+  width: 30rem;
+  height: 30rem;
+  padding-left: 33%;
+}
+
+/* when fullscreen */
+/* data-open is a data attribute. doesn't do anything magic, just another way to target elements */
+.iframe[data-open="true"] {
+  position: fixed;
+  padding-left: 0%;
+  inset: 0; /* shorthand for top, left, bottom, right */
+  width: 100%;
+  height: 100%;
+  z-index: 3; /* if you want on top of everything this z-index needs to be highest of all */
+}
+
+/* iframe itself should fill the parent div */
+.iframe iframe {
+  width: 100%;
+  height: 100%;
+}
+
+/* put the toggle button in the bottom right of iframe */
+.iframe-toggle {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
