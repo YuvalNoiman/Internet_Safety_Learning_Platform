@@ -18,9 +18,6 @@ if (!localFontSize){
 if (!localFont){
   font = 'sans serif'
 }
-//if (localS == 'dark'){
-//    document.documentElement.setAttribute('data-theme', 'dark')
-//}
 
 //Set the correct theme
 document.documentElement.setAttribute('data-theme', themeToSet)

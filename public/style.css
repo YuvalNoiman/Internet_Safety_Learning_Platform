@@ -9,7 +9,6 @@
   --moon-icon: #B1B0B5;
   --switch-circle-pos: 0.7rem;
   --sidebar-bg: rgba(140,202,255,255);
-  /*maybe change hover color*/
   --color-hover: #222533;
 }
 
@@ -35,7 +34,6 @@
 }
 
 :root[font="monospace"]{
-  /*--font: 'Courier New';*/
   font-family: 'Courier New';
 }
 
@@ -56,7 +54,6 @@
 }
 
 :root[font-size="small"]{
-  /*--font-size: 50%;*/
   font-size: 50%;
 }
 
@@ -84,20 +81,17 @@ html {
 h1 {
   color : var(--color-text);
   text-align: center;
-  /*font-family: 'Times New Roman', Times, serif;*/
   display:inline-block;
 }
 
 h3 {
   color : var(--color-text);
   text-align: center;
-  /*font-family: 'Times New Roman', Times, serif;*/
 }
 
 h5 { 
   color : var(--color-text);
   text-align: center;
-  /*font-family: 'Times New Roman', Times, serif;*/
   display:inline-block;
 }
 
@@ -105,14 +99,8 @@ button{
   color : var(--color-text);
   background-color: var(--color-button);
   border: none;
-  /*padding-top: 2%;
-  padding-bottom: 2%;
-  padding-left: 2%;
-  padding-right: 2%;*/
   padding: .85rem;
   float: right;
-  /*width: fit-content;*/
-  /*height: fit-content;*/
   font: inherit;
   cursor: pointer;
 }
@@ -120,9 +108,6 @@ button{
 .middlebutton{
   float: none;
 }
-
-/*submit button
-rgba(34,181,255,255)*/
 
 #right{
   float: right;
@@ -144,11 +129,8 @@ body {
   color : var(--color-text);
   margin: auto;
   min-height: 100vh;
-  /*maybe get rid of min height*/
   text-align: center;
-  /*font-family: 'Times New Roman', Times, serif;*/
   display: grid;
-  /*grid-auto-columns: minmax(100px 1fr);*/
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr auto;
   grid-template-areas: 
@@ -175,13 +157,10 @@ nav{
 }
 
 aside{
-  /*box-sizing: border-box;*/
   height: 400vh;
   width:0rem;
   align-self: start;
   grid-area: sidebar;
-  /*display: none;*/
-  /*change color later*/
   background-color: var(--color-button);
   transition: 300ms ease-in-out;
   overflow: hidden;
@@ -189,13 +168,11 @@ aside{
 }
 
 aside.show{
-  /*display: block;*/
   width: 20rem;
 }
 
 aside ul,li{
   list-style: none;
-  /*maybe change to 0px*/
   padding-left: 0.625rem;
 }
 
@@ -206,19 +183,16 @@ aside > ul > li:first-child{
 }
 
 aside .active{
-  /*change to var later */
   color: green;
 }
 
 aside a, aside .dropdown-button{
   border-radius: .5rem;
   padding: .85rem;
-  /*text-decoration: none;*/
   color: var(--color-text);
   display: flex;
   align-items: center;
   gap: 1rem;
-  /*box-sizing: border-box;*/
 }
 
 .dropdown-button{
@@ -226,7 +200,6 @@ aside a, aside .dropdown-button{
   text-align: left;
   background: none;
   border: none;
-  /*font: inherit;*/
   cursor: pointer;
 }
 
@@ -253,7 +226,6 @@ aside .sub-menu.show{
 }
 
 aside .sub-menu a{
-  /*padding-left: left;*/
   padding-left: 2rem;
 }
 
@@ -267,7 +239,6 @@ main{
 footer{
   grid-area: footer;
   padding: 0.2rem;
-  /*position: sticky;*/
   bottom: 0;
   background-color: var(--sidebar-bg);
 }
@@ -275,7 +246,6 @@ footer{
 text {
   color : var(--color-text);
   text-align: center;
-  /*font-family: 'Times New Roman', Times, serif;*/
 }
 
 form{
@@ -285,12 +255,9 @@ form{
 }
 
 #side-button {
-  /*change color later*/
  fill: var(--color-content);
  min-width: 8rem;
  min-height: 8rem;
- /*width: fit-content;
- height: fit-content;*/
  cursor: pointer;
 }
 
@@ -304,9 +271,6 @@ form{
   padding: 0.66rem;
   position: relative;
   transform: var(--default-transition);
-  /*width: fit-content;
-  height: fit-content;*/
-  /*display: inline-block;*/
 }
 
 #theme-switch::before {
@@ -340,9 +304,6 @@ form{
 }
 
 #dropdown-arrow{
-  /*width: fit-content;
-  height: fit-content;
-  flex-shrink: 0; */
   width: 2.22rem;
   height: 2.22rem;
   min-height: 2.22rem;
@@ -362,18 +323,15 @@ form{
   background-color: #4CAF50;
   color: white;
   padding: 1rem;
-  /*font-size: 16px;*/
   border: none;
   cursor: pointer;
 }
 
-/* The container <div> - needed to position the dropdown content */
 .dropdown-menu {
   position: relative;
   display: inline-block;
 }
 
-/* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
   position: absolute;
@@ -383,7 +341,6 @@ form{
   z-index: 1;
 }
 
-/* Links inside the dropdown */
 .dropdown-content text {
   color: black;
   padding: 0.75rem 1rem;
@@ -392,15 +349,12 @@ form{
   cursor: pointer;
 }
 
-/* Change color of dropdown links on hover */
 .dropdown-content text:hover {background-color: #f1f1f1}
 
-/* Show the dropdown menu on hover */
 .dropdown-menu:hover .dropdown-content {
   display: block;
 }
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 }
@@ -460,11 +414,6 @@ option{
   font: inherit;
 }
 
-/*
-iframe{
-  width: 30rem;
-  height: 30rem;
-}*/
 
 .iframe {
   width: 30rem;
@@ -472,24 +421,20 @@ iframe{
   padding-left: 33%;
 }
 
-/* when fullscreen */
-/* data-open is a data attribute. doesn't do anything magic, just another way to target elements */
 .iframe[data-open="true"] {
   position: fixed;
   padding-left: 0%;
-  inset: 0; /* shorthand for top, left, bottom, right */
+  inset: 0;
   width: 100%;
   height: 100%;
-  z-index: 3; /* if you want on top of everything this z-index needs to be highest of all */
+  z-index: 3;
 }
 
-/* iframe itself should fill the parent div */
 .iframe iframe {
   width: 100%;
   height: 100%;
 }
 
-/* put the toggle button in the bottom right of iframe */
 .iframe-toggle {
   position: absolute;
   right: 0;

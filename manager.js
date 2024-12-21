@@ -24,37 +24,6 @@ const options ={
 
 const  sessionStore = new mysqlStore(options);
 
-/*const mysql = require("mysql")
-
-var options ={
-        host:'local',
-        port: 3306,
-        user: 'root',
-        password: 12345,
-        database: 'dbsession'
-}
-
-var sessionConnection = mysql.createConnection(options);
-var sessionStore = new MySQLStore({
-        expiration: 1000000,
-        createDatabaseTable: true,
-        schema:{
-                tableName: 'sessiontbl',
-                columnNames: {
-                        session_id: 'session_id',
-                        expires: 'expires',
-                        data: 'data'
-                }
-        }
-},sessionStore)
-
-app.use( session ({
-        key: 'keyin',
-        secret: 'my secret',
-        store: sessionStore,
-        resave: false,
-        saveUninitialized: true
-}))*/
 
 const connection = mysql.createConnection({
         host: "localhost",
@@ -62,34 +31,6 @@ const connection = mysql.createConnection({
         password: "Pass1234",
         database: "learning_platform_database"
 })
-
-/*
-// for session
-const Mysql = require('mysql2/promise');
-
-const sql = Mysql.createPool({
-    host: "localhost",
-    user: "root",
-    password: "Pass1234",
-    database: "learning_platform_database",
-    waitForConnections: true,
-    connectionLimit: 100,
-    queueLimit: 0
-});
-
-// getting progress
-async function getTxPendingList() {
-    try {
-        const query = "SELECT * FROM users";
-        const rows = await sql.query(query);
-        return rows[0];
-    } catch (err) {
-        console.log('ERROR => ' + err);
-        return err;
-    }
-}
-getTxPendingList().then(json => console.log(json));
-*/
 
 
 const app = express();
@@ -112,12 +53,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/home', function(req, resp){
-        //console.log(req.session);
-        //console.log(req.session.email);
         req.session.destroy(err => {
                 if(err) console.log(err);
         });
-        //sessionStore.close()
         resp.clearCookie("session")
         resp.status(200);
         resp.sendFile(path.join(__dirname, '/public/home.html'));
@@ -135,10 +73,6 @@ app.get('/login/signup', function(req, resp){
         resp.sendFile(path.join(__dirname, '/public/signup.html'));
 });
 
-//async function hash(password) {
-//        hash = await bcrypt.hash(String(password), 0);
-//        return hash;
-//    }
 
 app.post('/signup', (req, resp) => {
         const {email, f_name, l_name, age, password, conpassword} = req.body;
@@ -146,15 +80,9 @@ app.post('/signup', (req, resp) => {
         connection.connect(function(err){
                 if (err) throw err;
                 console.log("Connected!");
-                //connection.query('SELECT email FROM users where email = ?', [email], (error, result)=>{
-                //        if (error) throw err;
-                //        console.log(result)
-                //});
                 if (email.includes("@") && (password.length >= 8) && (password==conpassword)){
                         connection.query('SELECT email FROM users where email = ?', [email], (error, result)=>{
                                 if (error) throw err;
-                                //console.log("Result", result)
-                                //console.log(result[0].email)
                                 if (result[0] != undefined){
                                         console.log("Result 0:", result[0])
                                         resp.redirect('/login/signup');   
@@ -166,10 +94,8 @@ app.post('/signup', (req, resp) => {
                                         console.log(password_hash);
                                         console.log(otp_hash);
                                         connection.query('INSERT INTO Users (email, password, f_name, l_name, age, otp, verified) VALUES (?, ?, ?, ?, ?, ?, ?)', [email, password_hash, f_name, l_name, age, otp_hash, false], (error, result)=>{
-                        //connection.query('INSERT INTO users (email, password, age) VALUES (?, ?, ?)', [email, password, age], (error, result)=>{
                                                 if (err)  console.log(err);
                                                 console.log("user saved")
-                                //resp.sendFile(path.join(__dirname, '/public/login.html'));
                                         });  
                                         connection.query('INSERT INTO Progress (email, gsp1, gsp2, ph1, ph2, i1, i2, pa1, pa2, drf1, drf2, mm, v1, v2, w1, w2, aw1, aw2, t1, t2, s1, s2, r1, r2, c, sec) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [email, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false], (error, result)=>{
                                                 if (err)  console.log(err);
@@ -181,7 +107,6 @@ app.post('/signup', (req, resp) => {
                                                 auth: {
                                                 user: 'internetsectest@yahoo.com',
                                                 pass: 'xqpxrqdanedjxxwo',
-                                    //pass: 'Security$1234Plus',
                                                 },
                                         });
             
@@ -193,9 +118,6 @@ app.post('/signup', (req, resp) => {
                                         };
             
                                         transporter.sendMail(mailOptions, (error, info) => {
-                                //console.log(transporter)
-                                //console.log(mailOptions)
-                                //console.log(info)
                                                 if (error) console.log(error);
                                                 else {
                                                     res.json({
@@ -203,13 +125,11 @@ app.post('/signup', (req, resp) => {
                                                     })
                                                 }
                                         });
-                        //resp.sendFile(path.join(__dirname, '/public/verify.html'));
                                         resp.redirect('/verify'); 
                                 }
                         });
                 }
                 else{
-                        //resp.sendFile(path.join(__dirname, '/public/signup.html'));
                         resp.redirect('/login/signup'); 
                 }
         });
@@ -248,11 +168,9 @@ app.post('/do_verify', (req, resp) => {
                         }else{
                                 console.log("not good")
                                 resp.redirect('/verify'); 
-                                //console.log("not good 2")
                         }
                 });
                 
-                //resp.sendFile(path.join(__dirname, '/public/login.html'));
         });
 })
 
@@ -275,7 +193,6 @@ app.post('/forgot', (req, resp) => {
                 auth: {
                     user: 'internetsectest@yahoo.com',
                     pass: 'xqpxrqdanedjxxwo',
-                    //pass: 'Security$1234Plus',
                 },
         });
 
@@ -287,9 +204,6 @@ app.post('/forgot', (req, resp) => {
         };
 
         transporter.sendMail(mailOptions, (error, info) => {
-                //console.log(transporter)
-                //console.log(mailOptions)
-                //console.log(info)
                 if (error) console.log(error);
                 else {
                     res.json({
@@ -297,7 +211,6 @@ app.post('/forgot', (req, resp) => {
                     })
                 }
         });
-        //resp.sendFile(path.join(__dirname, '/public/reset_pass.html'));
         resp.redirect('/reset_pass'); 
 })
 
@@ -338,10 +251,8 @@ app.post('/change_pass', (req, resp) => {
                         else{
                         console.log("not good")
                         resp.redirect('/reset_pass'); 
-                        //console.log("not good 2")
                         }
                 });
-                //resp.sendFile(path.join(__dirname, '/public/login.html'));
         });
 });
 
@@ -392,7 +303,6 @@ app.post('/loggingin', (req, resp) => {
                         console.log(req.session.age)
                         }
                 });
-                //console.log("email2", req.session.email2);
                 connection.query('SELECT email, password, verified FROM users where email = ?', [email], (error, result)=>{
                         if (error) throw error;
                         console.log(result)
@@ -400,7 +310,6 @@ app.post('/loggingin', (req, resp) => {
                                 console.log(result[0].email);
                                 console.log(result[0].password);
                                 console.log(result[0].verified);
-                                //console.log(bcrypt.compareSync(password, result[0].password));
                                 if ((result[0]!= undefined) && (result[0].verified != false) && (bcrypt.compareSync(password, result[0].password) == true)){
                                         console.log("user logged in");
                                         req.session.email = email;
@@ -443,9 +352,6 @@ app.post('/loggingin', (req, resp) => {
                                                 console.log(req.session.age)
                                         });
                                         req.session.save();
-                                        //console.log("Request Email: ", req.session.email);
-                                        //console.log(req.session);
-                                        //resp.sendFile(path.join(__dirname, '/public/gisse_overview.html'));
                                         resp.redirect('/gisse')
                                         console.log("sent to overview");
                                 }else{
@@ -466,6 +372,9 @@ app.get('/login/forgot', function(req, resp){
 
 app.get('/gisse', function(req, resp){
         console.log(req.session);
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.gsp1 == false){
                 req.session.gsp1 = true;
                 connection.query('UPDATE progress set gsp1 = ? where email = ?', [req.session.gsp1, req.session.email], (error, result)=>{
@@ -477,6 +386,9 @@ app.get('/gisse', function(req, resp){
 });
 
 app.get('/malware', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.mm == false){
                 resp.redirect(req.get('referer'));
         }
@@ -492,10 +404,12 @@ app.get('/malware', function(req, resp){
 });
 
 app.get('/certificate', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.c == false){
                 resp.redirect(req.get('referer'));
         }
-        //resp.sendFile(path.join(__dirname, '/public/certificate.html'));
         console.log(req.session.email);
         console.log(req.session);
         console.log(req.session.f_name);
@@ -505,28 +419,12 @@ app.get('/certificate', function(req, resp){
         app.engine('html', require('ejs').renderFile);
         app.set('view engine', 'html'); 
         resp.render('certificate.ejs', data);
-        /*
-        connection.connect(function(err){
-                if (err) throw err;
-                console.log("Connected!");
-                connection.query('SELECT email, c FROM progress where email = ?', [email], (error, result)=>{
-                        if (error) throw error;
-                        c = result[0].c;
-                        if (c == true){
-                                resp.sendFile(path.join(__dirname, '/public/certificate.html'));
-                        }
-                        else{
-                                //resp.redirect('back');
-                                resp.redirect(req.get('referer'));
-                                //resp.sendFile(req.current);
-                        }
-                        console.log(c);
-                });
-        });
-        */
 });
 
 app.get('/sec', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.c == false){
                 resp.redirect(req.get('referer'));
         }
@@ -546,6 +444,9 @@ app.get('/sec', function(req, resp){
 });
 
 app.get('/ads/content', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.pa2 == false){
                 resp.redirect(req.get('referer'));
         }
@@ -561,6 +462,9 @@ app.get('/ads/content', function(req, resp){
 });
 
 app.get('/ads/interact', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.pa1 == false){
                 resp.redirect(req.get('referer'));
         }
@@ -576,6 +480,9 @@ app.get('/ads/interact', function(req, resp){
 });
 
 app.get('/adware/content', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.aw2 == false){
                 resp.redirect(req.get('referer'));
         }
@@ -591,6 +498,9 @@ app.get('/adware/content', function(req, resp){
 });
 
 app.get('/adware/interact', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.aw1 == false){
                 resp.redirect(req.get('referer'));
         }
@@ -606,6 +516,9 @@ app.get('/adware/interact', function(req, resp){
 });
 
 app.get('/files/content', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.drf2 == false){
                 resp.redirect(req.get('referer'));
         }
@@ -621,6 +534,9 @@ app.get('/files/content', function(req, resp){
 });
 
 app.get('/files/interact', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.drf1 == false){
                 resp.redirect(req.get('referer'));
         }
@@ -636,6 +552,9 @@ app.get('/files/interact', function(req, resp){
 });
 
 app.get('/impersonation/content', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.i2 == false){
                 resp.redirect(req.get('referer'));
         }
@@ -651,6 +570,9 @@ app.get('/impersonation/content', function(req, resp){
 });
 
 app.get('/impersonation/interact', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.i1 == false){
                 resp.redirect(req.get('referer'));
         }
@@ -666,6 +588,9 @@ app.get('/impersonation/interact', function(req, resp){
 });
 
 app.get('/phishing/content', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.ph2 == false){
                 resp.redirect(req.get('referer'));
         }
@@ -681,12 +606,14 @@ app.get('/phishing/content', function(req, resp){
 });
 
 app.get('/phishing/interact', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         const transporter = nodemailer.createTransport({
                 service: 'Yahoo',
                 auth: {
                     user: 'internetsectest@yahoo.com',
                     pass: 'xqpxrqdanedjxxwo',
-                    //pass: 'Security$1234Plus',
                 },
         });
 
@@ -739,6 +666,9 @@ app.get('/phishing/interact', function(req, resp){
 });
 
 app.get('/ransomware/content', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.r2 == false){
                 resp.redirect(req.get('referer'));
         }
@@ -754,6 +684,9 @@ app.get('/ransomware/content', function(req, resp){
 });
 
 app.get('/ransomware/interact', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.r1 == false){
                 resp.redirect(req.get('referer'));
         }
@@ -769,6 +702,9 @@ app.get('/ransomware/interact', function(req, resp){
 });
 
 app.get('/safety/content', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.gsp2 == false){
                 resp.redirect(req.get('referer'));
         }
@@ -784,6 +720,9 @@ app.get('/safety/content', function(req, resp){
 });
 
 app.get('/safety/interact', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.gsp1 == false){
                 resp.redirect(req.get('referer'));
         }
@@ -799,6 +738,9 @@ app.get('/safety/interact', function(req, resp){
 });
 
 app.get('/spyware/content', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.s2 == false){
                 resp.redirect(req.get('referer'));
         }
@@ -814,6 +756,9 @@ app.get('/spyware/content', function(req, resp){
 });
 
 app.get('/spyware/interact', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.s1 == false){
                 resp.redirect(req.get('referer'));
         }
@@ -829,6 +774,9 @@ app.get('/spyware/interact', function(req, resp){
 });
 
 app.get('/trojans/content', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.t2 == false){
                 resp.redirect(req.get('referer'));
         }
@@ -844,6 +792,9 @@ app.get('/trojans/content', function(req, resp){
 });
 
 app.get('/trojans/interact', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.t1 == false){
                 resp.redirect(req.get('referer'));
         }
@@ -859,6 +810,9 @@ app.get('/trojans/interact', function(req, resp){
 });
 
 app.get('/virus/content', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.v2 == false){
                 resp.redirect(req.get('referer'));
         }
@@ -874,6 +828,9 @@ app.get('/virus/content', function(req, resp){
 });
 
 app.get('/virus/interact', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.v1 == false){
                 resp.redirect(req.get('referer'));
         }
@@ -889,6 +846,9 @@ app.get('/virus/interact', function(req, resp){
 });
 
 app.get('/worm/content', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.w2 == false){
                 resp.redirect(req.get('referer'));
         }
@@ -904,6 +864,9 @@ app.get('/worm/content', function(req, resp){
 });
 
 app.get('/worm/interact', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         if (req.session.w1 == false){
                 resp.redirect(req.get('referer'));
         }
@@ -918,8 +881,10 @@ app.get('/worm/interact', function(req, resp){
         resp.sendFile(path.join(__dirname, '/public/worm_interact.html'));
 });
 
-//get rid of replace with google webgl
 app.get('/impersonation/google', function(req, resp){
+        if (req.session.email == undefined){
+                resp.redirect('home')
+        }
         resp.sendFile(path.join(__dirname, '/public/impersonation_google.html'));
 });
 
@@ -955,23 +920,9 @@ app.get('/fake_email_hard', function(req, resp){
         resp.sendFile(path.join(__dirname, '/public/images/fake_email_hard.jpg'));
 });
 
-/*
-app.get('/adware_sim', function(req, resp){
-        resp.sendFile(path.join(__dirname, 'public/games/ADWARE_WEBGL/index.html'));
-});
-app.get('/ads_sim', function(req, resp){
-        resp.sendFile(path.join(__dirname, 'public/games/ADS_WEBGL/index.html'));
-});
-*/
-
 var compression = require('compression');
 app.use(compression());
-//app.use(express.static('public/games/IMPERSONATION_WEBGL'));
 app.use('/impersonation_sim', express.static(path.join(__dirname, 'public/games/IMPERSONATION_WEBGL')));
-//app.use('/impersonation_sim', express.static(path.join(__dirname, 'public/games/IMPERSONATION_WEBGL/index.html')));
-//app.get('/impersonation_sim', function(req, resp){
-//        resp.sendFile(path.join(__dirname, 'public/games/IMPERSONATION_WEBGL/index.html'));
-//});
 
 app.use('/ransomware_sim', express.static(path.join(__dirname, 'public/games/RANSOMWARE_WEBGL')));
 app.use('/stranger_danger_sim', express.static(path.join(__dirname, 'public/games/SD_WEBGL')));
@@ -981,32 +932,6 @@ app.use('/virus_sim', express.static(path.join(__dirname, 'public/games/VIRUS_WE
 app.use('/worm_sim', express.static(path.join(__dirname, 'public/games/WORM_WEBGL')));
 app.use('/adware_sim', express.static(path.join(__dirname, 'public/games/ADWARE_WEBGL')));
 app.use('/ads_sim', express.static(path.join(__dirname, 'public/games/ADS_WEBGL')));
-
-/*
-app.get('/ransomware_sim', function(req, resp){
-        resp.sendFile(path.join(__dirname, 'public/games/RANSOMWARE_WEBGL/index.html'));
-});
-
-app.get('/stranger_danger_sim', function(req, resp){
-        resp.sendFile(path.join(__dirname, 'public/games/SD_WEBGL/index.html'));
-});
-
-app.get('/spyware_sim', function(req, resp){
-        resp.sendFile(path.join(__dirname, 'public/games/SPYWARE_WEBGL/index.html'));
-});
-
-app.get('/trojan_sim', function(req, resp){
-        resp.sendFile(path.join(__dirname, 'public/games/TROJAN_WEBGL/index.html'));
-});
-
-app.get('/virus_sim', function(req, resp){
-        resp.sendFile(path.join(__dirname, 'public/games/VIRUS_WEBGL/index.html'));
-});
-
-app.get('/worm_sim', function(req, resp){
-        resp.sendFile(path.join(__dirname, 'public/games/WORM_WEBGL/index.html'));
-});
-*/
 
 app.use((req, resp) => {
         resp.status(404);
